@@ -1,3 +1,7 @@
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/lz520520/railgunlib v0.0.0-20220503114656-15e9e753e005 h1:zyzwwnDexH1dsldJSQM5Y7UCRI/g2YIpeB1kwXZqB7s=
 github.com/lz520520/railgunlib v0.0.0-20220503114656-15e9e753e005/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
+github.com/lz520520/railgunlib v0.0.0-20220503121613-6dac7c190380 h1:vU0oUbjHIlXXNFgnzhlyxsaf3FpWudCRiuOt8mN31H8=
+github.com/lz520520/railgunlib v0.0.0-20220503121613-6dac7c190380/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
+github.com/lz520520/railgunlib v0.0.0-20220505013844-4589eee8afa0 h1:HCMRZHwYZqwU0FTnwakwWKLsbMdo5N1wxyh+HQXHEUE=
+github.com/lz520520/railgunlib v0.0.0-20220505013844-4589eee8afa0/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
