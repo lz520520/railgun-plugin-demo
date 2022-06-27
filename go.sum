@@ -11,3 +11,7 @@ github.com/lz520520/railgunlib v0.0.0-20220505160753-e6b61127bfc5 h1:uE3zR7iD5cU
 github.com/lz520520/railgunlib v0.0.0-20220505160753-e6b61127bfc5/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
 github.com/lz520520/railgunlib v0.0.0-20220505162819-774e96479831 h1:kW+IGX2u/FegrLXK5Faq1Eq2sRkveGFL+AOldR6Xlz8=
 github.com/lz520520/railgunlib v0.0.0-20220505162819-774e96479831/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
+github.com/lz520520/railgunlib v0.0.0-20220627111019-d4b5fa22e06b h1:8s6lBBFKvWuaEjQQKyNxS2Rp60ZymEyTQVjoYktXvFA=
+github.com/lz520520/railgunlib v0.0.0-20220627111019-d4b5fa22e06b/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=
+github.com/lz520520/railgunlib v0.0.0-20220627113509-79bfc6d7dedd h1:M25jLbvmnMpjYNHCSP20+vuwpGo+MT7d7OoHIWJq0uI=
+github.com/lz520520/railgunlib v0.0.0-20220627113509-79bfc6d7dedd/go.mod h1:xHeTELBtJN8TNUP1CiBjUBBBvNbruH5CC0ycEFfj87I=

