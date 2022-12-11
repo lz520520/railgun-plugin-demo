@@ -1,4 +1,4 @@
-package poc_product2
+package poc_product1
 
 import (
 	"encoding/json"

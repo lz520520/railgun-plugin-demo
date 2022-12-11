@@ -1,7 +1,8 @@
-package exp_product1
+package exp_wso2
 
 import (
 	"github.com/lz520520/railgunlib/pkg/register/exp_register"
+	"github.com/lz520520/railgunlib/pkg/templates/common"
 	"github.com/lz520520/railgunlib/pkg/templates/exp_model"
 	"github.com/lz520520/railgunlib/pkg/templates/exp_templates"
 	"github.com/lz520520/railgunlib/pkg/utils/lznet/lzhttp"
@@ -55,7 +56,8 @@ func (self *Exp_CVE_2022_29464_upload) Upload1(filename string, content string) 
 func init() {
 	//fmt.Printf("%v, %v", reflect.ValueOf(test).Type(), reflect.ValueOf(test).Kind())
 	expmsg := exp_model.ExpMsg{
-		Time: `2022-04-25`,
+		Author: "lz520520",
+		Time:   `2022-04-25`,
 		Range: `WSO2 API Manager 2.2.0 及更高版本到 4.0.0
 WSO2 Identity Server 5.2.0 及以上至 5.11.0
 WSO2 身份服务器分析 5.4.0、5.4.1、5.5.0 和 5.6.0
@@ -65,6 +67,7 @@ WSO2 Enterprise Integrator 6.2.0 及更高版本至 6.6.0`,
 		Describe: `WSO2 产品允许无限制的文件上传和远程代码执行。攻击者必须使用带有 Content-Disposition 目录遍历序列的 /fileupload 端点来到达 Web 根目录下的目录，例如 ../../../../repository/deployment/server/webapps 目录。`,
 		Details:  ``,
 		Payload:  ``,
+		VulType:  common.VulCodeExec,
 	}
 
 	registerMsg := exp_register.ExpRegisterMsg{
