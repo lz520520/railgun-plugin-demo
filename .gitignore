@@ -1,4 +1,4 @@
 *.exe
 /conf/
 /log/
-/.idea
+/.idea/
