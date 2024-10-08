@@ -1,0 +1,1125 @@
+- app: test
+  name: 反序列化2
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2006-01-02"
+  create_date: "2006-01-02"
+  update_date: "2006-01-02"
+  src_code_path: modules/exps/exp_plugins/example/exp_product1/exp_plugin4.go
+  src_config_path: modules/exps/exp_plugins/example/exp_product1/exp_plugin4.yml
+- app: test
+  name: testCode
+  author: testCode
+  plugin_version: 1.0.0
+  disclosure_date: "2016-08-03"
+  create_date: "2024-10-06 13:10:02"
+  update_date: "2024-10-06 13:10:02"
+  scope: Apache Shiro <= 1.2.4
+  vul_id: shiro-550
+  src_code_path: modules/exps/exp_plugins/example/exp_product1/exp_testCode.go
+  src_config_path: modules/exps/exp_plugins/example/exp_product1/exp_testCode.yml
+- app: test
+  name: ysoDemo
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-06-27"
+  create_date: "2024-10-06 13:14:33"
+  update_date: "2024-10-06 13:14:33"
+  vul_type: RCE
+  src_code_path: modules/exps/exp_plugins/example/exp_product1/exp_ysoDemo.go
+  src_config_path: modules/exps/exp_plugins/example/exp_product1/exp_ysoDemo.yml
+- app: Dubbo
+  name: CVE-2019-17564
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2019-10-14"
+  create_date: "2024-10-07 02:10:25"
+  update_date: "2024-10-07 02:10:25"
+  scope: |-
+    2.7.0 <= Apache Dubbo <= 2.7.4
+    2.6.0 <= Apache Dubbo <= 2.6.7
+    Apache Dubbo = 2.5.x
+  description: Aapche Dubbo 反序列化命令执行漏洞
+  vul_id: CVE-2019-17564
+  src_code_path: modules/exps/exp_plugins/public/exp_Apache_Dubbo/exp_CVE_2019_17564.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Apache_Dubbo/exp_CVE_2019_17564.yml
+- app: Apache_Solr
+  name: CVE-2017-12629
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2017-08-07"
+  create_date: "2024-10-07 05:58:25"
+  update_date: "2024-10-07 05:58:25"
+  scope: 小于7.1
+  description: Apache Solr 是一个开源的搜索服务器。Solr 使用 Java 语言开发，主要基于 HTTP 和 Apache Lucene 实现。原理大致是文档通过Http利用XML加到一个搜索集合中。查询该集合也是通过 http收到一个XML/JSON响应来实现。此次7.1.0之前版本总共爆出两个漏洞：XML实体扩展漏洞（XXE）和远程命令执行漏洞（RCE），二者可以连接成利用链，编号均为CVE-2017-12629。
+  vul_id: CVE-2017-12629
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2017_12629.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2017_12629.yml
+- app: Apache_Solr
+  name: CVE-2019-0193
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2018-11-14"
+  create_date: "2024-10-08 10:29:52"
+  update_date: "2024-10-08 10:29:52"
+  scope: Apache Solr 是一个开源的搜索服务器。Solr 使用 Java 语言开发，主要基于 HTTP 和 Apache Lucene 实现。此次漏洞出现在Apache Solr的DataImportHandler，该模块是一个可选但常用的模块，用于从数据库和其他源中提取数据。它具有一个功能，其中所有的DIH配置都可以通过外部请求的dataConfig参数来设置。由于DIH配置可以包含脚本，因此攻击者可以通过构造危险的请求，从而造成远程命令执行。
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2019_0193.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2019_0193.yml
+- app: Apache_Solr
+  name: CVE-2019-17558
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2019-10-14"
+  create_date: "2024-10-07 05:55:13"
+  update_date: "2024-10-07 05:55:13"
+  description: |-
+    Apache Solr 是一个开源的搜索服务器。
+    在其 5.0.0 到 8.3.1版本中，用户可以注入自定义模板，通过Velocity模板语言执行任意命令。
+  vul_id: CVE-2019-17558
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2019_17558.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Apache_Solr/exp_CVE_2019_17558.yml
+- app: ' Apache_Spark'
+  name: CVE_2022_33891
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-07-18"
+  create_date: "2024-10-06 06:18:37"
+  update_date: "2024-10-06 06:18:37"
+  scope: |-
+    Apache Spark versions 3.0.3 and earlier
+    versions 3.1.1 to 3.1.2
+    versions 3.2.0 to 3.2.1
+  vul_id: CVE-2022-33891
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Apache_Spark/exp_CVE_2022_33891.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Apache_Spark/exp_CVE_2022_33891.yml
+- app: ApereoCAS
+  name: Deserialize
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-07-17"
+  create_date: "2024-10-06 06:25:31"
+  update_date: "2024-10-06 06:25:31"
+  scope: Apereo CAS 4.1.X ~ 4.1.6
+  description: Apereo CAS 4.1 反序列化命令执行漏洞
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_ApereoCAS/exp_Deserialize.go
+  src_config_path: modules/exps/exp_plugins/public/exp_ApereoCAS/exp_Deserialize.yml
+- app: Cacti
+  name: CVE-2022-46169
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-12-05"
+  create_date: "2024-10-08 10:22:11"
+  update_date: "2024-10-08 10:22:11"
+  scope: 1.2.17-1.2.22
+  description: Cacti是一个服务器监控与管理平台。在其1.2.17-1.2.22版本中存在一处命令注入漏洞，攻击者可以通过X-Forwarded-For请求头绕过服务端校验并在其中执行任意命令。
+  vul_id: CVE-2022-46169
+  src_code_path: modules/exps/exp_plugins/public/exp_Cacti/exp_CVE_2022_46169.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Cacti/exp_CVE_2022_46169.yml
+- app: Citrix
+  name: CVE_2019_19781
+  author: lz520520
+  plugin_version: 1.0.1
+  disclosure_date: "2019-12-13"
+  create_date: "2024-10-06 06:35:05"
+  update_date: "2024-10-06 06:35:05"
+  scope: |-
+    Citrix Application Delivery Controller (ADC) and Gateway 10.5
+    Citrix Application Delivery Controller (ADC) and Gateway 11.1
+    Citrix Application Delivery Controller (ADC) and Gateway 12.0
+    Citrix Application Delivery Controller (ADC) and Gateway 12.1
+    Citrix Application Delivery Controller (ADC) and Gateway 13.0
+  description: Citrix公司的 ADC (Application Delivery Controller, 也叫NetScaler ADC) 和 Gateway (也叫 NetScaler Gateway) 被爆出可通过目录遍历执行远程代码的漏洞。
+  vul_id: CVE-2019-19781
+  src_code_path: modules/exps/exp_plugins/public/exp_Citrix/exp_CVE_2019_19781.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Citrix/exp_CVE_2019_19781.yml
+- app: Confluence
+  name: CVE-2022-26134
+  author: 小晨曦 Modify By lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-06-06"
+  create_date: "2024-10-06 06:51:24"
+  update_date: "2024-10-06 06:51:24"
+  scope: |-
+    1.3.0 <= Confluence Server and Data Center < 7.4.17
+    7.13.0 <= Confluence Server and Data Center < 7.13.7
+    7.14.0 <= Confluence Server and Data Center < 7.14.3
+    7.15.0 <= Confluence Server and Data Center < 7.15.2
+    7.16.0 <= Confluence Server and Data Center < 7.16.4
+    7.17.0 <= Confluence Server and Data Center < 7.17.4
+    7.18.0 <= Confluence Server and Data Center < 7.18.1
+  description: Atlassian Confluence OGNL表达式注入漏洞
+  vul_id: CVE-2022-26134
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Confluence/exp_CVE-2022-26134.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Confluence/exp_CVE-2022-26134.yml
+- app: Druid
+  name: CVE-2021-25646
+  author: 凉风
+  plugin_version: 1.0.0
+  disclosure_date: "2022-05-22"
+  create_date: "2024-10-06 06:55:10"
+  update_date: "2024-10-06 06:55:10"
+  scope: Druid <= 0.20.0
+  description: |-
+    Apache Druid 是用Java编写的面向列的开源分布式数据存储，旨在快速获取大量事件数据，并在数据之上提供低延迟查询。
+    Apache Druid包括执行用户提供的JavaScript的功能嵌入在各种类型请求中的代码。此功能在用于高信任度环境中，默认已被禁用。但是，在Druid 0.20.0及更低版本中，经过身份验证的用户发送恶意请求，利用Apache Druid漏洞可以执行任意代码。
+  vul_id: CVE-2021-25646
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Druid/exp_CVE-2021-25646.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Druid/exp_CVE-2021-25646.yml
+- app: Druid
+  name: CVE-2021-36749
+  author: 凉风
+  plugin_version: 1.0.0
+  disclosure_date: "2022-05-19"
+  create_date: "2024-10-06 06:57:53"
+  update_date: "2024-10-06 06:57:53"
+  scope: Apache Druid <= v0.21.1
+  description: Apache Druid 任意文件读取漏洞
+  vul_id: CVE-2021-36749
+  vul_type: 任意文件读取
+  src_code_path: modules/exps/exp_plugins/public/exp_Druid/exp_CVE-2021-36749.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Druid/exp_CVE-2021-36749.yml
+- app: F5
+  name: CVE-2020-5902
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-07-06"
+  create_date: "2024-10-06 07:10:30"
+  update_date: "2024-10-06 07:10:30"
+  vul_id: CVE-2020-5902
+  src_code_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE-2020-5902.go
+  src_config_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE-2020-5902.yml
+- app: F5
+  name: CVE_2021_22986
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-03-19"
+  create_date: "2024-10-06 07:12:56"
+  update_date: "2024-10-06 07:12:56"
+  scope: |-
+    F5 BIG-IP 16.0.0-16.0.1
+    F5 BIG-IP 15.1.0-15.1.2
+    F5 BIG-IP 14.1.0-14.1.3.1
+    F5 BIG-IP 13.1.0-13.1.3.5
+    F5 BIG-IP 12.1.0-12.1.5.2
+
+    F5 BIG-IQ 7.1.0-7.1.0.2
+    F5 BIG-IQ 7.0.0-7.0.0.1
+    F5 BIG-IQ 6.0.0-6.1.0
+  description: BIG-IP存在代码执行漏洞，该漏洞允许定义身份验证的攻击者通过BIG-IP管理界面和自身IP地址对iControl REST接口进行网络访问，以执行任意系统命令，创建或删除文件以及替换服务。该中断只能通过控制界面利用，而不能通过数据界面利用。
+  vul_id: CVE-2021-22986
+  src_code_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE_2021_22986.go
+  src_config_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE_2021_22986.yml
+- app: F5
+  name: CVE-2022-1388
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-05-05"
+  create_date: "2024-10-06 07:14:50"
+  update_date: "2024-10-06 07:14:50"
+  scope: |-
+    16.1.0 <= F5 BIG-IP <= 16.1.2
+    15.1.0 <= F5 BIG-IP <= 15.1.5
+    14.1.0 <= F5 BIG-IP <= 14.1.4
+    13.1.0 <= F5 BIG-IP <= 13.1.4
+    12.1.0 <= F5 BIG-IP <= 12.1.6
+    11.6.1 <= F5 BIG-IP <= 11.6.5
+  description: 通过hop-by-hop漏洞绕过CVE-2021-22986，从而访问未授权接口执行命令
+  vul_id: CVE-2022-1388
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE_2022_1388.go
+  src_config_path: modules/exps/exp_plugins/public/exp_F5/exp_CVE_2022_1388.yml
+- app: GoAnywhere
+  name: CVE_2023_0669
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2023-02-14"
+  create_date: "2024-10-08 10:59:59"
+  update_date: "2024-10-08 10:59:59"
+  scope: 7.1.2以下
+  description: 反序列化
+  vul_id: CVE-2023-0669
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_GoAnywhere/exp_CVE_2023_0669.go
+  src_config_path: modules/exps/exp_plugins/public/exp_GoAnywhere/exp_CVE_2023_0669.yml
+- app: H3C IMC
+  name: CNVD-2021-39067
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2021-07-03"
+  create_date: "2024-10-08 10:16:17"
+  update_date: "2024-10-08 10:16:17"
+  description: H3C IMC 存在Primefaces框架表达式注入，攻击者通过构造特殊的请求造成远程命令执行。
+  vul_id: CNVD-2021-39067
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_H3C_IMC/exp_CNVD_2021_39067.go
+  src_config_path: modules/exps/exp_plugins/public/exp_H3C_IMC/exp_CNVD_2021_39067.yml
+- app: HFS
+  name: rce
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-03-07"
+  create_date: "2024-10-06 07:33:50"
+  update_date: "2024-10-06 07:33:50"
+  scope: 2.3c以前的2.3x版本
+  description: |-
+    HTTP File Server是一款专为个人用户所设计的HTTP文件服务器，它提供虚拟档案系统，支持新增、移除虚拟档案资料夹等。
+    Rejetto HTTP File Server 2.3c及之前版本中的parserLib.pas文件中的‘findMacroMarker’函数中存在安全漏洞，该漏洞源于parserLib.pas文件没有正确处理空字节。远程攻击者可借助搜索操作中的‘%00’序列利用该漏洞执行任意程序。
+  src_code_path: modules/exps/exp_plugins/public/exp_HFS/exp_rce.go
+  src_config_path: modules/exps/exp_plugins/public/exp_HFS/exp_rce.yml
+- app: Jboss
+  name: 202204_RPC
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-04-27"
+  create_date: "2024-10-06 07:44:45"
+  update_date: "2024-10-06 07:44:45"
+  scope: JBoss eap/as <= 6.*
+  description: 4446/3873端口可直接发送反序列化数据。
+  src_code_path: modules/exps/exp_plugins/public/exp_Jboss/exp_202204_RPC.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Jboss/exp_202204_RPC.yml
+- app: Jboss
+  name: CVE-2017-7504
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-04-05"
+  create_date: "2024-10-06 07:46:58"
+  update_date: "2024-10-06 07:46:58"
+  scope: JBoss AS 4.x及之前版本
+  description: Red Hat JBoss Application Server 是一款基于JavaEE的开源应用服务器。JBoss AS 4.x及之前版本中，JbossMQ实现过程的JMS over HTTP Invocation Layer的HTTPServerILServlet.java文件存在反序列化漏洞，远程攻击者可借助特制的序列化数据利用该漏洞执行任意代码。
+  vul_id: CVE-2017-7504
+  src_code_path: modules/exps/exp_plugins/public/exp_Jboss/exp_CVE-2017-7504.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Jboss/exp_CVE-2017-7504.yml
+- app: Jboss
+  name: CVE-2017-12149
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-08-01"
+  create_date: "2024-10-06 07:47:52"
+  update_date: "2024-10-06 07:47:52"
+  scope: JBoss AS 4.x及之前版本
+  description: |-
+    1. 确认目标是否存在/invoker/readonly路径。
+    2. 设置URL为http://x.x.x.x:8084或http://x.x.x.x:8084/invoker/readonly
+    2. 选择ysoserial的gadget，推荐使用CommonsCollectionsK1，对应版本commons-collections:3.1、3.2.1
+    3. 输入命令执行即可。
+    报错回显
+  vul_id: CVE-2017-12149
+  src_code_path: modules/exps/exp_plugins/public/exp_Jboss/exp_CVE_2017_12149.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Jboss/exp_CVE_2017_12149.yml
+- app: Nexus
+  name: CVE_2020_10199
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-03-06"
+  create_date: "2024-10-08 10:26:17"
+  update_date: "2024-10-08 10:26:17"
+  scope: <3.21.1
+  description: Nexus Repository Manager 3 是一款软件仓库，可以用来存储和分发Maven、NuGET等软件源仓库。其3.21.1及之前版本中，存在一处任意EL表达式注入漏洞。
+  vul_id: CVE_2020_10199
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Nexus/exp_CVE_2020_10199.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Nexus/exp_CVE_2020_10199.yml
+- app: Node
+  name: cve_2021_21315
+  author: 凉风
+  plugin_version: 1.0.0
+  disclosure_date: "2022-05-22"
+  create_date: "2024-10-06 08:12:51"
+  update_date: "2024-10-06 08:12:51"
+  scope: systeminformation < 5.3.1
+  description: Node.js-systeminformation是用于获取各种系统信息的Node.js模块,在存在命令注入漏洞的版本中，攻击者可以通过未过滤的参数中注入payload执行系统命令。
+  vul_id: CVE-2021-21315
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Node/exp_cve_2021_21315.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Node/exp_cve_2021_21315.yml
+- app: OFBiz
+  name: CVE_2020_9496
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-08-03"
+  create_date: "2024-10-06 08:30:16"
+  update_date: "2024-10-06 08:30:16"
+  scope: <17.12.04
+  description: 17.12.04版本之前的XMLRPC接口存在一处反序列化漏洞，攻击者利用这个漏洞可以在目标服务器上执行任意命令。
+  src_code_path: modules/exps/exp_plugins/public/exp_OFBiz/exp_CVE_2020_9496.go
+  src_config_path: modules/exps/exp_plugins/public/exp_OFBiz/exp_CVE_2020_9496.yml
+- app: Solarview
+  name: CVE_2022_29303
+  author: Henry4E36
+  plugin_version: 1.0.0
+  disclosure_date: "2022-06-02"
+  create_date: "2024-10-06 08:43:48"
+  update_date: "2024-10-06 08:43:48"
+  scope: SolarView Compact 6.0
+  description: SolarView Compact6.0版本中通过conf_mail.php实现命令注入
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Solarview/exp_CVE_2022_29303.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Solarview/exp_CVE_2022_29303.yml
+- app: Solarview
+  name: CVE_2022_40881
+  author: Henry4E36
+  plugin_version: 1.0.0
+  disclosure_date: "2022-11-22"
+  create_date: "2024-10-06 08:45:00"
+  update_date: "2024-10-06 08:45:00"
+  scope: SolarView Compact 6.0
+  description: SolarView Compact6.0版本中通过network_test.php实现命令注入
+  vul_id: CVE_2022_40881
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Solarview/exp_CVE_2022_40881.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Solarview/exp_CVE_2022_40881.yml
+- app: Struts2
+  name: S2_005
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2013-05-23"
+  create_date: "2024-10-06 12:31:22"
+  update_date: "2024-10-06 12:31:22"
+  scope: Struts 2.0.0 - 2.3.14.1
+  description: |
+    Struts2 标签中 '<s:a>' 和 '<s:url>' 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：
+
+    1. none - 链接不包含请求的任意参数值（默认）
+    2. get - 链接只包含 GET 请求中的参数和其值
+    3. all - 链接包含 GET 和 POST 所有参数和其值
+
+    '<s:a>'用来显示一个超链接，当'includeParams=all'的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。
+  vul_id: CVE-2013-1966
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_005.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_005.yml
+- app: Struts2
+  name: S2_013
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2013-05-23"
+  create_date: "2024-10-06 12:33:16"
+  update_date: "2024-10-06 12:33:16"
+  scope: Struts 2.0.0 - 2.3.14.1
+  description: |
+    Struts2 标签中 "<s:a>" 和 "<s:url>" 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：
+
+    1. none - 链接不包含请求的任意参数值（默认）
+    2. get - 链接只包含 GET 请求中的参数和其值
+    3. all - 链接包含 GET 和 POST 所有参数和其值
+
+    "<s:a>"用来显示一个超链接，当"includeParams=all"的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。
+  vul_id: CVE-2013-1966
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_013.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_013.yml
+- app: Struts2
+  name: S2_016
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2013-07-09"
+  create_date: "2024-10-06 12:37:21"
+  update_date: "2024-10-06 12:37:21"
+  scope: Struts 2.0.0 - Struts 2.3.15
+  description: 在struts2中，DefaultActionMapper类支持以"action:"、"redirect:"、"redirectAction:"作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。
+  vul_id: CVE-2013-2251
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_016.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_016.yml
+- app: Struts2
+  name: S2_019
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2013-10-08"
+  create_date: "2024-10-06 12:39:11"
+  update_date: "2024-10-06 12:39:11"
+  scope: Struts 2.0.0 - Struts 2.3.15.1
+  description: 动态方法调用是一种已知会施加可能的安全漏洞的机制，但到目前为止，它默认启用，警告用户应尽可能将其关闭。
+  vul_id: CVE-2013-4316
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_019.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_019.yml
+- app: Struts2
+  name: S2_032
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2016-04-27"
+  create_date: "2024-10-06 12:40:29"
+  update_date: "2024-10-06 12:40:29"
+  scope: Struts 2.3.20 - Struts 2.3.28 (except 2.3.20.3 and 2.3.24.3)
+  description: 当启用动态方法调用时，可以传递可用于在服务器端执行任意代码的恶意表达式。
+  vul_id: CVE-2016-3081
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_032.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_032.yml
+- app: Struts2
+  name: S2_037
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2016-06-20"
+  create_date: "2024-10-06 12:41:46"
+  update_date: "2024-10-06 12:41:46"
+  scope: Struts 2.3.20 - Struts Struts 2.3.28.1
+  description: 当使用REST插件启用动态方法调用时，可以传递可用于在服务器端执行任意代码的恶意表达式。
+  vul_id: CVE-2016-4438
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_037.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_037.yml
+- app: Struts2
+  name: S2_045
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-03-07"
+  create_date: "2024-10-06 12:46:32"
+  update_date: "2024-10-06 12:46:32"
+  scope: Struts 2.3.5 – Struts 2.3.31、Struts 2.5 – Struts 2.5.10
+  description: |-
+    Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。
+    实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。
+  vul_id: CVE-2017-5638
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_045.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_045.yml
+- app: Struts2
+  name: S2_046
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-03-21"
+  create_date: "2024-10-06 12:49:55"
+  update_date: "2024-10-06 12:49:55"
+  scope: Struts 2.3.5 – Struts 2.3.31、Struts 2.5 – Struts 2.5.10
+  description: |-
+    使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。
+
+    JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查<constant name=”struts.multipart.parser” value=”jakarta-stream” />
+    上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小
+    文件名中包含OGNL payload
+  vul_id: CVE-2017-5638
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_046.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_046.yml
+- app: Struts2
+  name: S2_048
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-07-07"
+  create_date: "2024-10-06 13:04:50"
+  update_date: "2024-10-06 13:04:50"
+  scope: Apache Struts 2.3.x系列中启用了struts2-struts1-plugin插件的版本
+  description: 2017年7月7日，ApacheStruts 发布最新的安全公告，Apache Struts2的strus1插件存在远程代码执行的高危漏洞，漏洞编号为 CVE-2017-9791（S2-048）。攻击者可以构造恶意的字段值通过Struts2的struts2-struts1-plugin插件，远程执行代码。
+  vul_id: CVE-2017-9791
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_048.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_048.yml
+- app: Struts2
+  name: S2_052
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-09-01"
+  create_date: "2024-10-06 12:53:25"
+  update_date: "2024-10-06 12:53:25"
+  scope: Struts 2.5 - Struts 2.5.12
+  description: Apache 官方发布 Struts 2 紧急漏洞公告（S2-052），CVE 编号CVE-2017-9805。公告中披露，Struts2 REST插件的XStream组件存在反序列化漏洞，导致远程代码执行。攻击者利用此漏洞可执行任意代码，创建/删除系统账号，修改任意文件，植入后门等
+  vul_id: CVE-2017-9805
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_052.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_052.yml
+- app: Struts2
+  name: S2_053
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-09-01"
+  create_date: "2024-10-06 12:55:02"
+  update_date: "2024-10-06 12:55:02"
+  scope: Struts 2.0.1 - Struts 2.3.33, Struts 2.5 - Struts 2.5.10
+  description: |-
+    Struts2在使用Freemarker模板引擎的时候，同时允许解析OGNL表达式。导致用户输入的数据本身不会被OGNL解析，但由于被Freemarker解析一次后变成一个表达式，被OGNL解析第二次，导致任意命令执行漏洞。
+    当开发者在Freemarker标签中使用如下代码时<@s.hidden name=”redirectUri” value=redirectUri /><@s.hidden name=”redirectUri” value=”${redirectUri}” />Freemarker会将值当做表达式进行执行，最后导致代码执行。
+  vul_id: CVE-2017-1000112
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_053.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_053.yml
+- app: Struts2
+  name: S2_057
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2018-08-01"
+  create_date: "2024-10-06 12:56:32"
+  update_date: "2024-10-06 12:56:32"
+  scope: Apache Struts 2.3 – Struts 2.3.34、Apache Struts 2.5 – Struts 2.5.16
+  description: 当struts.mapper.alwaysSelectFullNamespace设置为true，并且package标签页以及result的param标签页的namespace值的缺失，或使用了通配符时可造成namespace被控制，最终namespace会被带入OGNL语句执行，从而产生远程代码执行漏洞。
+  vul_id: CVE-2018-11776
+  src_code_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_057.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Struts2/exp_S2_057.yml
+- app: Tapestry
+  name: sp
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2020-12-08"
+  create_date: "2024-10-08 11:36:25"
+  update_date: "2024-10-08 11:36:25"
+  scope: Tapestry 4
+  description: Tapestry4 sp参数反序列化
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Tapestry/exp_sp.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Tapestry/exp_sp.yml
+- app: ThinkPHP
+  name: ThinkPHP5_0_x
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2019-01-14"
+  scope: thinkphp 5.0.0-5.0.23
+  description: |
+    2019 年 1 月 11 日，ThinkPHP 团队发布了一个补丁更新，修复了一处由于不安全的动态函数调用导致的远程代码执行漏洞。该漏洞危害程度非常高，默认条件下即可执行远程代码。对 ThinkPHP 的多个版本进行源码分析和验证后，确认具体受影响的版本为 ThinkPHP5.0-5.0.23 完整版。
+  src_code_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP5_0_x.go
+  src_config_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP5_0_x.yml
+- app: ThinkPHP
+  name: ThinkPHP 5.1-5.2
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2019-01-11"
+  create_date: "2024-10-06 02:44:48"
+  update_date: "2024-10-06 02:44:48"
+  scope: 5.1-5.2全版本
+  description: 2019年1月11日，某安全团队公布了一篇ThinkPHP5.0.*远程代码执行漏洞文档，公布了已给ThinkPHP5.0.*远程代码执行漏洞。2019年1月15日，某安全研究员公布了一篇ThinkPHP5.1-5.2全版本远程代码执行漏洞的文章，文章中的该漏洞与ThinkPHP 5.0.*远程代码执行漏洞原理相似，攻击者可利用该漏洞在一定条件下获取目标服务器的最高权限。
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP5_1_2.go
+  src_config_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP5_1_2.yml
+- app: ThinkPHP
+  name: ThinkPHP 5.x
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2018-12-09"
+  scope: 5.0.0-5.0.22, 5.1.x-5.1.31
+  description: |
+    ThinkPHP 官方 2018 年 12 月 9 日发布重要的安全更新，修复了一个严重的远程代码执行漏洞。该更新主要涉及一个安全更新，由于框架对控制器名没有进行足够的检测会导致在没有开启强制路由的情况下可能的 getshell 漏洞
+  src_code_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP_5_x.go
+  src_config_path: modules/exps/exp_plugins/public/exp_ThinkPHP/exp_ThinkPHP_5_x.yml
+- app: Tomcat
+  name: Ajp_lfi
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-02-20"
+  create_date: "2024-10-06 09:01:57"
+  update_date: "2024-10-06 09:01:57"
+  scope: |-
+    Apache Software Foundation Tomcat 6.*
+    Apache Software Foundation Tomcat 7.0.0 - 7.0.99
+    Apache Software Foundation Tomcat 8.0.0 - 8.5.50
+    Apache Software Foundation Tomcat 9.0.0 - 9.0.30
+  description: Apache Tomcat 使用AJP协议通信过程中存在文件包含漏洞，由于AJP协议设计存在缺陷内部相关的属性可控，攻击者可以构造属性值，实现漏洞的利用，成功利用这些漏洞可导致获得敏感文件信息，甚至可以进行远程代码执行漏洞利用。
+  vul_id: CVE-2020-1938
+  src_code_path: modules/exps/exp_plugins/public/exp_Tomcat/exp_Ajp_lfi.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Tomcat/exp_Ajp_lfi.yml
+- app: Tomcat
+  name: CVE-2017-12615
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-09-09"
+  create_date: "2024-10-06 09:03:42"
+  update_date: "2024-10-06 09:03:42"
+  scope: 5.x 到 9.x
+  description: 当 Tomcat运行在Windows或linux操作系统时，且启用了HTTP PUT请求方法（例如，将 readonly 初始化参数由默认值设置为 false），攻击者将有可能可通过精心构造的攻击请求数据包向服务器上传包含任意代码的 JSP 文件，JSP文件中的恶意代码将能被服务器执行。导致服务器上的数据泄露或获取服务器权限。
+  src_code_path: modules/exps/exp_plugins/public/exp_Tomcat/exp_CVE_2017_12615.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Tomcat/exp_CVE_2017_12615.yml
+- app: 通达OA
+  name: fake_user
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-04-22"
+  create_date: "2024-10-06 09:05:23"
+  update_date: "2024-10-06 09:05:23"
+  scope: 通达OA < 11.5.200417 版本，2017版本
+  description: 近日，通达OA官方在更新了一个v11版本安全补丁, 其中修复了一个任意用户伪造登录漏洞。未经授权的远程攻击者可以利用公开到POC进行任意用户伪造登录，最高可利用admin身份登陆系统并获取相应的操作权限。
+  src_code_path: modules/exps/exp_plugins/public/exp_TongdaOA/exp_fake_user.go
+  src_config_path: modules/exps/exp_plugins/public/exp_TongdaOA/exp_fake_user.yml
+- app: 通达OA
+  name: upload_lfi
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-03-13"
+  create_date: "2024-10-06 09:06:51"
+  update_date: "2024-10-06 09:06:51"
+  scope: 2003版、2013增强版、2015版、2016版、2017版和V11版
+  description: |-
+    通达OA是一款协同办公自动化软件，该exp结合文件上传和文件包含两个漏洞进行利用，
+    在ispirit/im/upload.php中传入参数P则无需登录系统直接上传文件；
+    由于上传文件不再根目录，通过ispirit/interface/gateway.php中，不传入参数P则无需验证，可使用json参数进行文件包含执行。
+  src_code_path: modules/exps/exp_plugins/public/exp_TongdaOA/exp_upload_lfi.go
+  src_config_path: modules/exps/exp_plugins/public/exp_TongdaOA/exp_upload_lfi.yml
+- app: WebSphere
+  name: CVE_2015_7450
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2015-01-01"
+  create_date: "2024-10-06 09:29:12"
+  update_date: "2024-10-06 09:29:12"
+  src_code_path: modules/exps/exp_plugins/public/exp_WebSphere/exp_CVE_2015_7450.go
+  src_config_path: modules/exps/exp_plugins/public/exp_WebSphere/exp_CVE_2015_7450.yml
+- app: Webmin
+  name: CVE-2019-15107
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2019-08-15"
+  create_date: "2024-10-08 10:13:17"
+  update_date: "2024-10-08 10:13:17"
+  scope: 1.882 - 1.921
+  description: Webmin是一个用于管理类Unix系统的管理配置工具，具有Web页面。在其找回密码页面中，存在一处无需权限的命令注入漏洞，通过这个漏洞攻击者即可以执行任意系统命令。
+  vul_id: CVE-2019-15107
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_Webmin/exp_CVE_2019_15107.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Webmin/exp_CVE_2019_15107.yml
+- app: Zoho_Password_Manager_Pro
+  name: CVE-2022-35405
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-08-03"
+  create_date: "2024-10-06 09:52:55"
+  update_date: "2024-10-06 09:52:55"
+  scope: |-
+    Access Manager Plus	4302及以下
+    Password Manager Pro	12100及以下
+    PAM360	5500及以下
+  description: 在 ManageEngine Password Manager Pro 和 PAM360 中未经身份验证的远程代码执行。\n在 ManageEngine Access Manager Plus 中经过身份验证的远程代码执行。
+  vul_id: CVE-2022-35405
+  src_code_path: modules/exps/exp_plugins/public/exp_Zoho_Password_Manager_Pro/exp_CVE_2022_35405.go
+  src_config_path: modules/exps/exp_plugins/public/exp_Zoho_Password_Manager_Pro/exp_CVE_2022_35405.yml
+- app: apache_httpd
+  name: CVE_2021_42013
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-10-06"
+  create_date: "2024-10-06 04:14:08"
+  update_date: "2024-10-06 04:14:08"
+  scope: |-
+    Apache HTTPd 2.4.49
+    Apache HTTPd 2.4.50
+  description: Apache HTTPd是Apache基金会开源的一款流行的HTTP服务器。2021年10月6日Apache HTTPd官方发布安全更新，披露了CVE-2021-41773 Apache HTTPd 2.4.49 路径穿越漏洞。在其2.4.49版本中，引入了一个路径穿越漏洞。在路径穿越目录允许被访问的的情况下，例如配置了 <Directory />Require all granted</Directory>，攻击者可利用该路径穿越漏洞读取到Web目录之外的其他文件。同时若Apache HTTPd开启了cgi支持，攻击者可构造恶意请求执行命令，控制服务器。
+  vul_id: CVE-2021-42013
+  src_code_path: modules/exps/exp_plugins/public/exp_apache_httpd/exp_CVE_2021_42013.go
+  src_config_path: modules/exps/exp_plugins/public/exp_apache_httpd/exp_CVE_2021_42013.yml
+- app: apisix
+  name: CVE_2021_45232
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2021-12-18"
+  create_date: "2024-10-06 06:29:53"
+  update_date: "2024-10-06 06:29:53"
+  scope: 2.7≤ Apache APISIX  Dashboard <2.10.1
+  description: 导入导出配置接口存在未授权，可以添加恶意路由到apisix服务上，从而RCE
+  vul_id: CVE-2021-45232
+  src_code_path: modules/exps/exp_plugins/public/exp_apisix/exp_CVE_2021_45232.go
+  src_config_path: modules/exps/exp_plugins/public/exp_apisix/exp_CVE_2021_45232.yml
+- app: exchange
+  name: Proxylogon
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-03-03"
+  create_date: "2024-10-06 07:01:35"
+  update_date: "2024-10-06 07:01:35"
+  scope: |-
+    Microsoft Exchange 2013 < CU24
+    Microsoft Exchange 2016 < CU20
+    Microsoft Exchange 2019 < CU9
+    Microsoft Exchange 2010 < SP4
+    Exchange 2013 Versions < 15.00.1497.012
+    Exchange 2016 CU18 < 15.01.2106.013
+    Exchange 2016 CU19 < 15.01.2176.009
+    Exchange 2019 CU7 < 15.02.0721.013
+    Exchange 2019 CU8 < 15.02.0792.010
+  description: 攻击者可以通过CVE-2021-26855的ssrf漏洞获取到的Exchange administrator凭证，通过CVE-2021-27065构造恶意请求，在系统上写入任意文件。
+  vul_id: CVE-2021-26855/CVE-2021-27065
+  src_code_path: modules/exps/exp_plugins/public/exp_exchange/exp_Proxylogon.go
+  src_config_path: modules/exps/exp_plugins/public/exp_exchange/exp_Proxylogon.yml
+- app: fanruan
+  name: RCE1
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-08-17"
+  create_date: "2024-10-06 07:17:21"
+  update_date: "2024-10-06 07:17:21"
+  description: 通过权限绕过，访问报表查询界面，获取到sessionid，发送查询，查询中TYPE/TIME参数存在注入，并能执行java代码，从而成功利用
+  src_code_path: modules/exps/exp_plugins/public/exp_fanruan/exp_RCE1.go
+  src_config_path: modules/exps/exp_plugins/public/exp_fanruan/exp_RCE1.yml
+- app: fanruan
+  name: Upload1
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-08-17"
+  create_date: "2024-10-06 07:20:03"
+  update_date: "2024-10-06 07:20:03"
+  description: 帆软管理后台任意文件上传
+  src_code_path: modules/exps/exp_plugins/public/exp_fanruan/exp_Upload1.go
+  src_config_path: modules/exps/exp_plugins/public/exp_fanruan/exp_Upload1.yml
+- app: fanruan
+  name: channel
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-08-01"
+  create_date: "2024-10-08 11:27:34"
+  update_date: "2024-10-08 11:27:34"
+  scope: 2022-08-12之前的 FineReport10.0/11.0、FineBI5.1 系列均受影响
+  description: 反序列化
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_fanruan/exp_channel.go
+  src_config_path: modules/exps/exp_plugins/public/exp_fanruan/exp_channel.yml
+- app: gitlab
+  name: CVE_2021_22205
+  author: lz520520
+  plugin_version: 1.0.0
+  create_date: "2024-10-06 07:31:27"
+  update_date: "2024-10-06 07:31:27"
+  scope: "11.9 <=  GitLab（CE/EE）< 13.8.8 \n13.9 <=  GitLab（CE/EE）< 13.9.6 \n13.10 <= GitLab（CE/EE）< 13.10.3"
+  description: exiftool 远程命令执行漏洞，攻击者通过上传恶意图片可触发远程命令执行，控制服务器。
+  vul_id: CVE-2021-22205
+  src_code_path: modules/exps/exp_plugins/public/exp_gitlab/exp_CVE_2021_22205.go
+  src_config_path: modules/exps/exp_plugins/public/exp_gitlab/exp_CVE_2021_22205.yml
+- app: hikvision
+  name: CVE_2017_7921
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-08-03"
+  create_date: "2024-10-06 07:35:57"
+  update_date: "2024-10-06 07:35:57"
+  scope: 海康威视摄像头
+  description: 获取后台密码
+  vul_id: CVE-2017-7921
+  vul_type: 未授权访问
+  src_code_path: modules/exps/exp_plugins/public/exp_hikvision/exp_CVE_2017_7921.go
+  src_config_path: modules/exps/exp_plugins/public/exp_hikvision/exp_CVE_2017_7921.yml
+- app: hikvision
+  name: CVE_2021_36260
+  author: lz520520
+  plugin_version: 1.0.0
+  create_date: "2024-10-06 07:38:04"
+  update_date: "2024-10-06 07:38:04"
+  scope: 海康威视摄像头
+  vul_id: CVE-2021-36260
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_hikvision/exp_CVE_2021_36260.go
+  src_config_path: modules/exps/exp_plugins/public/exp_hikvision/exp_CVE_2021_36260.yml
+- app: nginxWebUI
+  name: 未授权执行命令
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2023-05-05"
+  create_date: "2024-10-08 11:39:28"
+  update_date: "2024-10-08 11:39:28"
+  vul_id: 1day
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_nginxWebUI/exp_runCmd_unauthorized.go
+  src_config_path: modules/exps/exp_plugins/public/exp_nginxWebUI/exp_runCmd_unauthorized.yml
+- app: o2oa
+  name: CVE_2022_22916
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-04-29"
+  create_date: "2024-10-06 08:17:51"
+  update_date: "2024-10-06 08:17:51"
+  description: 通过 /x_program_center/jaxrs/invoke 发现 O2OA v6.4.7 包含一个远程代码执行 (RCE) 漏洞
+  vul_id: CVE-2022-22916
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_o2oa/exp_RCE_CVE_2022_22916.go
+  src_config_path: modules/exps/exp_plugins/public/exp_o2oa/exp_RCE_CVE_2022_22916.yml
+- app: phpcms
+  name: upload
+  author: lz520520
+  plugin_version: 1.0.0
+  create_date: "2024-10-06 08:34:15"
+  update_date: "2024-10-06 08:34:15"
+  scope: PHPCMS 9.6.0
+  description: 在cms注册处，构造payload，将注册信息插入数据库时，会自动下载设置的URL文件，通过后缀绕过可getshell。
+  src_code_path: modules/exps/exp_plugins/public/exp_phpcms/exp_phpcms_upload.go
+  src_config_path: modules/exps/exp_plugins/public/exp_phpcms/exp_phpcms_upload.yml
+- app: 锐捷EG2000CE
+  name: RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-04-02"
+  create_date: "2024-10-06 08:36:17"
+  update_date: "2024-10-06 08:36:17"
+  scope: SSL VPN EG2000CE
+  src_code_path: modules/exps/exp_plugins/public/exp_ruijieEG2000CE/exp_RCE.go
+  src_config_path: modules/exps/exp_plugins/public/exp_ruijieEG2000CE/exp_RCE.yml
+- app: 致远OA
+  name: ReportServer
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2020-08-17"
+  create_date: "2024-10-06 08:41:56"
+  update_date: "2024-10-06 08:41:56"
+  scope: |-
+    致远A6-V5 V6.1
+    致远A6-V5 V6.1SP1
+    致远A8-V5 V6.1SP1
+    致远A8-V5 V6.1SP2
+  description: 任意文件上传
+  src_code_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_ReportServer.go
+  src_config_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_ReportServer.yml
+- app: 致远OA
+  name: formulaManagerRCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-03-03"
+  create_date: "2024-10-06 08:38:29"
+  update_date: "2024-10-06 08:38:29"
+  scope: V8.0
+  description: 权限绕过认证，访问管理员接口执行groovy脚本
+  src_code_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_formulaManagerRCE.go
+  src_config_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_formulaManagerRCE.yml
+- app: 致远OA
+  name: htmlofficeservlet
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2019-06-26"
+  create_date: "2024-10-06 08:40:13"
+  update_date: "2024-10-06 08:40:13"
+  scope: |-
+    致远OA A8-V5 V6.1 SP1
+    致远OA A8+协同管理软件 V7.0
+    致远OA A8+协同管理软件 V7.0 SP1
+    致远OA A8+协同管理软件 V7.0 SP2
+    致远OA A8+协同管理软件 V7.0 SP3
+    致远OA A8+协同管理软件 V7.1
+  description: 致远 OA 系统的一些版本存在任意文件写入漏洞，远程攻击者在无需登录的情况下可通过向 URL /seeyon/htmlofficeservlet POST 精心构造的数据即可向目标服务器写入任意文件，写入成功后可执行任意系统命令进而控制目标服务器。
+  src_code_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_htmlofficeservlet.go
+  src_config_path: modules/exps/exp_plugins/public/exp_seeyonOA/exp_htmlofficeservlet.yml
+- app: sonicWall_SSLVPN
+  name: RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-01-24"
+  create_date: "2024-10-06 08:46:18"
+  update_date: "2024-10-06 08:46:18"
+  src_code_path: modules/exps/exp_plugins/public/exp_sonicWall_SSLVPN/exp_RCE.go
+  src_config_path: modules/exps/exp_plugins/public/exp_sonicWall_SSLVPN/exp_RCE.yml
+- app: spring
+  name: CVE-2022-22947
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-03-02"
+  create_date: "2024-10-06 08:53:14"
+  update_date: "2024-10-06 08:53:14"
+  scope: |-
+    Spring Cloud Gateway
+    3.1.0
+    3.0.0至3.0.6
+    其他老版本
+  description: CVE-2022-22947 SpringCloud GateWay SPEL RCE
+  vul_id: CVE-2022-22947
+  src_code_path: modules/exps/exp_plugins/public/exp_spring/exp_CVE_2022_22947.go
+  src_config_path: modules/exps/exp_plugins/public/exp_spring/exp_CVE_2022_22947.yml
+- app: spring
+  name: Spring_Bean_RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-03-31"
+  create_date: "2024-10-06 08:57:17"
+  update_date: "2024-10-06 08:57:17"
+  scope: |-
+    Spring MVC
+    JDK>=9
+  description: Spring MVC Beans RCE
+  src_code_path: modules/exps/exp_plugins/public/exp_spring/exp_Spring_Bean_RCE.go
+  src_config_path: modules/exps/exp_plugins/public/exp_spring/exp_Spring_Bean_RCE.yml
+- app: 向日葵
+  name: RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-02-16"
+  create_date: "2024-10-06 08:59:25"
+  update_date: "2024-10-06 08:59:25"
+  scope: <11.0.0.33
+  vul_id: CNVD-2022-10270
+  src_code_path: modules/exps/exp_plugins/public/exp_sunlogin/exp_RCE1.go
+  src_config_path: modules/exps/exp_plugins/public/exp_sunlogin/exp_RCE1.yml
+- app: vBulletin
+  name: pre_auth_RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2019-09-25"
+  create_date: "2024-10-06 09:08:58"
+  update_date: "2024-10-06 09:08:58"
+  scope: all versions from 5.0.0 till 5.5.4
+  src_code_path: modules/exps/exp_plugins/public/exp_vBulletin/exp_pre_auth_RCE.go
+  src_config_path: modules/exps/exp_plugins/public/exp_vBulletin/exp_pre_auth_RCE.yml
+- app: vcenter
+  name: CVE-2021-21972
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-02-24"
+  create_date: "2024-10-06 09:13:16"
+  update_date: "2024-10-06 09:13:16"
+  scope: |-
+    vmware:vcenter_server 7.0 U1c 之前的 7.0 版本
+    vmware:vcenter_server 6.7 U3l 之前的 6.7 版本
+    vmware:vcenter_server 6.5 U3n 之前的 6.5 版本
+  description: /ui/vropspluginui/rest/services/uploadova存在任意文件上传漏洞
+  vul_id: CVE-2021-21972
+  src_code_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_21972.go
+  src_config_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_21972.yml
+- app: vcenter
+  name: CVE-2021-21985
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-05-26"
+  create_date: "2024-10-06 09:19:22"
+  update_date: "2024-10-06 09:19:22"
+  scope: |-
+    VMware:vCenter Server
+    	- 非7.0 U2b版本的7.0版本
+    	- 非6.7 U3n版本的6.7版本
+    	- 非6.5 U3p版本的6.5版本
+    VMware:Cloud Foundation
+    	- 低于4.2.1版本的4.x版本
+    	- 低于3.10.2.1版本的3.x版本
+  description: 由于在 vCenter Server 中默认启用的 Virtual SAN Health Check 插件中缺少输入验证，vSphere Client (HTML5) 包含一个远程执行代码漏洞。具有网络访问端口443的恶意角色可能会利用此问题在托管vCenter Server的基础操作系统上以不受限制的特权执行命令。
+  vul_id: CVE-2021-21985
+  src_code_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_21985.go
+  src_config_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_21985.yml
+- app: vcenter
+  name: CVE-2021-22005
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-09-21"
+  create_date: "2024-10-06 09:23:44"
+  update_date: "2024-10-06 09:23:44"
+  scope: |-
+    vCenter Server 7.0 < 7.0 U2c
+    vCenter Server 6.7 < 6.7 U3o
+    Cloud Foundation (vCenter Server) 4.x < KB85718 (4.3)
+    Cloud Foundation (vCenter Server) 3.x < KB85719 (3.10.2.2)
+    6.7 Windows 不受影响
+  description: 对 vCenter Server 上的端口 443 具有网络访问权限的恶意行为者可能会利用此问题通过上传特制文件在 vCenter Server 上执行代码。
+  vul_id: CVE-2021-22005
+  src_code_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_22005.go
+  src_config_path: modules/exps/exp_plugins/public/exp_vcenter/exp_CVE_2021_22005.yml
+- app: 泛微OA
+  name: BshServlet
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2019-09-17"
+  create_date: "2024-10-06 09:25:34"
+  update_date: "2024-10-06 09:25:34"
+  scope: 泛微e-cology OA <=9.0
+  description: 泛微e-cology OA系统自带BeanShell组件被爆出存在远程代码执行漏洞。攻击者通过调用BeanShell组件中未授权访问的问题接口可直接在目标服务器上执行任意命令。
+  src_code_path: modules/exps/exp_plugins/public/exp_weaver/exp_OA_BshServlet.go
+  src_config_path: modules/exps/exp_plugins/public/exp_weaver/exp_OA_BshServlet.yml
+- app: 泛微OA
+  name: common_Ctrl
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-04-17"
+  create_date: "2024-10-06 09:27:44"
+  update_date: "2024-10-06 09:27:44"
+  description: 通过构造白名单后缀可绕过接口的访问限制，并调佣任意类实现文件上传
+  src_code_path: modules/exps/exp_plugins/public/exp_weaver/exp_OA_common_Ctrl.go
+  src_config_path: modules/exps/exp_plugins/public/exp_weaver/exp_OA_common_Ctrl.yml
+- app: windows
+  name: MS17-010
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2017-03-14"
+  create_date: "2024-10-06 09:32:37"
+  update_date: "2024-10-06 09:32:37"
+  scope: windows 2008
+  description: SMB远程代码执行
+  vul_id: MS17-010
+  src_code_path: modules/exps/exp_plugins/public/exp_windows/exp_MS17010.go
+  src_config_path: modules/exps/exp_plugins/public/exp_windows/exp_MS17010.yml
+- app: wso2
+  name: cve_2022_29464_upload
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-04-25"
+  create_date: "2024-10-06 09:34:38"
+  update_date: "2024-10-06 09:34:38"
+  scope: |-
+    WSO2 API Manager 2.2.0 及更高版本到 4.0.0
+    WSO2 Identity Server 5.2.0 及以上至 5.11.0
+    WSO2 身份服务器分析 5.4.0、5.4.1、5.5.0 和 5.6.0
+    WSO2 身份服务器作为密钥管理器 5.3.0 及更高版本至 5.10.0
+    WSO2 Enterprise Integrator 6.2.0 及更高版本至 6.6.0
+  description: WSO2 产品允许无限制的文件上传和远程代码执行。攻击者必须使用带有 Content-Disposition 目录遍历序列的 /fileupload 端点来到达 Web 根目录下的目录，例如 ../../../../repository/deployment/server/webapps 目录。
+  vul_id: CVE-2022-29464
+  src_code_path: modules/exps/exp_plugins/public/exp_wso2/exp_cve_2022_29464_upload.go
+  src_config_path: modules/exps/exp_plugins/public/exp_wso2/exp_cve_2022_29464_upload.yml
+- app: xxl_job_admin
+  name: api反序列化
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2023-06-27"
+  create_date: "2024-10-08 12:32:12"
+  update_date: "2024-10-08 12:32:12"
+  scope: XxlJob<=2.1.2
+  description: 反序列化
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_xxl_job_admin/exp_api.go
+  src_config_path: modules/exps/exp_plugins/public/exp_xxl_job_admin/exp_api.yml
+- app: 畅捷通
+  name: Upload
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-11-17"
+  create_date: "2024-10-06 09:37:17"
+  update_date: "2024-10-06 09:37:17"
+  scope: 畅捷通 T+ <= v17.0
+  description: 前台任意文件上传
+  vul_type: 文件上传
+  src_code_path: modules/exps/exp_plugins/public/exp_yongyouTplus/exp_ Upload.go
+  src_config_path: modules/exps/exp_plugins/public/exp_yongyouTplus/exp_ Upload.yml
+- app: 用友NC
+  name: 202207_grouptempletUpload
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2022-07-21"
+  create_date: "2024-10-06 09:39:49"
+  update_date: "2024-10-06 09:39:49"
+  scope: seeyon NC 6.5
+  description: 任意文件上传
+  vul_type: 文件上传
+  src_code_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_202207_grouptempletUpload.go
+  src_config_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_202207_grouptempletUpload.yml
+- app: 用友NC
+  name: ActionHandlerServlet
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-06-25"
+  create_date: "2024-10-06 09:46:19"
+  update_date: "2024-10-06 09:46:19"
+  scope: seeyon NC 6.5
+  description: 反序列化
+  src_code_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_ActionHandlerServlet.go
+  src_config_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_ActionHandlerServlet.yml
+- app: 用友NC
+  name: BshServlet RCE
+  author: lz520520
+  plugin_version: 1.0.0
+  disclosure_date: "2021-06-01"
+  create_date: "2024-10-06 09:47:35"
+  update_date: "2024-10-06 09:47:35"
+  description: BshServlet RCE,参考泛微2019年漏洞
+  src_code_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_BshServlet.go
+  src_config_path: modules/exps/exp_plugins/public/exp_yonyouNC/exp_BshServlet.yml
+- app: zentaopms
+  name: bypass rce
+  author: 小晨曦,Ar3h
+  plugin_version: 1.0.0
+  disclosure_date: "2023-01-06"
+  create_date: "2024-10-08 10:35:12"
+  update_date: "2024-10-08 10:35:12"
+  scope: |-
+    17.4 <= 禅道项目管理系统 <= 18.0.beta1（开源版）
+    7.4 <= 禅道项目管理系统 <= 8.0.beta1（企业版）
+    3.4 <= 禅道项目管理系统 <= 4.0.beta1（旗舰版）
+  description: 禅道项目管理系统中存在身份认证绕过漏洞，未经授权的远程攻击者可利用此漏洞获取系统管理员权限，进一步组合后台命令执行漏洞最终可在目标服务器上注入任意命令，实现未授权接管服务器。
+  vul_type: 代码执行
+  src_code_path: modules/exps/exp_plugins/public/exp_zentaopms/exp_bypass_rce.go
+  src_config_path: modules/exps/exp_plugins/public/exp_zentaopms/exp_bypass_rce.yml
+- app: zyxel
+  name: CVE-2022-30525
+  author: 小晨曦
+  plugin_version: 1.0.0
+  disclosure_date: "2022-05-13"
+  create_date: "2024-10-06 09:55:21"
+  update_date: "2024-10-06 09:55:21"
+  scope: |-
+    USG FLEX 100, 100W, 200, 500, 700：ZLD5.00 到 ZLD5.21 Patch 1
+    USG20-VPN, USG20W-VPN：ZLD5.10 到 ZLD5.21 Patch 1
+    ATP 100, 200, 500, 700, 800：ZLD5.10 到 ZLD5.21 Patch 1
+  description: Zyxel 防火墙中的命令注入漏洞，该漏洞影响支持零接触配置 (ZTP) 的 Zyxel 防火墙，其中包括 ATP 系列、VPN 系列和 USG FLEX 系列（包括 USG20-VPN 和 USG20W-VPN）。该漏洞标识为 CVE-2022-30525，允许未经身份验证的远程攻击者以 nobody 受影响设备上的用户身份执行任意代码。
+  vul_id: CVE-2022-30525
+  vul_type: 命令执行
+  src_code_path: modules/exps/exp_plugins/public/exp_zyxel/exp_CVE_2022_30525.go
+  src_config_path: modules/exps/exp_plugins/public/exp_zyxel/exp_CVE_2022_30525.yml
