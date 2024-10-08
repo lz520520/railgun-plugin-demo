@@ -1,0 +1,67 @@
+info:
+    app: vcenter
+    name: CVE-2021-21985
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-05-26"
+    create_date: "2024-10-06 09:19:22"
+    update_date: "2024-10-06 09:19:22"
+    scope: |-
+        VMware:vCenter Server
+        	- 非7.0 U2b版本的7.0版本
+        	- 非6.7 U3n版本的6.7版本
+        	- 非6.5 U3p版本的6.5版本
+        VMware:Cloud Foundation
+        	- 低于4.2.1版本的4.x版本
+        	- 低于3.10.2.1版本的3.x版本
+    description: 由于在 vCenter Server 中默认启用的 Virtual SAN Health Check 插件中缺少输入验证，vSphere Client (HTML5) 包含一个远程执行代码漏洞。具有网络访问端口443的恶意角色可能会利用此问题在托管vCenter Server的基础操作系统上以不受限制的特权执行命令。
+    vul_id: CVE-2021-21985
+    detail: |-
+        漏洞接口
+        /ui/h5-vsan/rest/proxy/service
+        	poc1 /ui/h5-vsan/rest/proxy/service/com.vmware.vsan.client.services.capability.VsanCapabilityProvider/getClusterCapabilityData
+        
+        	payload1: 6.7/7.0回显利用
+        	payload2: java.lang.ProcessImpl命令执行，linux写文件回显，windows自行构造
+        	payload3: jndi注入，输入ldap或rmi地址即可
+payloads:
+    - name: getmsg1
+      alias: 获取版本信息
+    - name: cmd1
+      alias: 6.7/7.0回显利用
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: os
+            title: 系统
+            param_type: combobox
+            default_value:
+                - linux
+                - windows
+            required: true
+    - name: cmd2
+      alias: 无回显
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: os
+            title: 系统
+            param_type: combobox
+            default_value:
+                - linux
+                - windows
+            required: true
+    - name: cmd3
+      alias: JNDI注入
+      params:
+          - key: cmd
+            title: JNDI
+            param_type: edit
+            default_value: ""
+            required: true

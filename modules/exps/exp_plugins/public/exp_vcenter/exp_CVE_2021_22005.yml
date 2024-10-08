@@ -1,0 +1,54 @@
+info:
+    app: vcenter
+    name: CVE-2021-22005
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-09-21"
+    create_date: "2024-10-06 09:23:44"
+    update_date: "2024-10-06 09:23:44"
+    scope: |-
+        vCenter Server 7.0 < 7.0 U2c
+        vCenter Server 6.7 < 6.7 U3o
+        Cloud Foundation (vCenter Server) 4.x < KB85718 (4.3)
+        Cloud Foundation (vCenter Server) 3.x < KB85719 (3.10.2.2)
+        6.7 Windows 不受影响
+    description: 对 vCenter Server 上的端口 443 具有网络访问权限的恶意行为者可能会利用此问题通过上传特制文件在 vCenter Server 上执行代码。
+    vul_id: CVE-2021-22005
+    detail: |-
+        payload1: telemetry上传，需要开启ceip，只支持json文件，通过计划任务执行命令最终写入webshell。
+        	1. 输入url不能带路径
+        	2. 输入文件名和文件内容，只支持jsp后缀，并且不能带路径，否则无法访问到。
+        	3. 写入路径为/usr/lib/vmware-sso/vmware-sts/webapps/ROOT/，不能直接访问到，通过/websso/..;/xxx.jsp访问
+        PS: 执行后会删除计划任务。
+
+        payload2: collectAgent velocity模板注入，log4j写入webshell
+        	1. 输入url不能带路径
+        	2. 输入文件名和文件内容，只支持jsp后缀，并且不能带路径，否则无法访问到。
+        	3. 写入路径为/usr/lib/vmware-sso/vmware-sts/webapps/ROOT/，不能直接访问到，通过/websso/..;/xxx.jsp访问
+payloads:
+    - name: upload1
+      alias: telemetry上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+    - name: upload2
+      alias: collectAgent上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+    - name: getmsg2
+      alias: 检测漏洞

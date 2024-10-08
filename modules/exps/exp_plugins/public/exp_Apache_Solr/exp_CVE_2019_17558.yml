@@ -1,0 +1,23 @@
+info:
+    app: Apache_Solr
+    name: CVE-2019-17558
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2019-10-14"
+    create_date: "2024-10-07 05:55:13"
+    update_date: "2024-10-07 05:55:13"
+    description: |-
+        Apache Solr 是一个开源的搜索服务器。
+        在其 5.0.0 到 8.3.1版本中，用户可以注入自定义模板，通过Velocity模板语言执行任意命令。
+    vul_id: CVE-2019-17558
+    reference: https://github.com/vulhub/vulhub/blob/master/solr/CVE-2019-17558/README.zh-cn.md
+    vul_type: 代码执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

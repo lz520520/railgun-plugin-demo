@@ -1,0 +1,58 @@
+info:
+    app: 用友NC
+    name: ActionHandlerServlet
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-06-25"
+    create_date: "2024-10-06 09:46:19"
+    update_date: "2024-10-06 09:46:19"
+    scope: seeyon NC 6.5
+    description: 反序列化
+    detail: |-
+        /servlet/~pubapp/com.ufida.zior.console.ActionHandlerServlet接口，提交gzip压缩的序列化数据就可以触发
+        payload1: CommonCollections6DefiningClassLoaderTomcatEcho回显
+        payload2: 命令执行无回显，"获取信息"用于校验漏洞，通过sleep判断较为准确
+payloads:
+    - name: getmsg1
+      alias: 检测漏洞1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: getmsg2
+      alias: 检测漏洞2
+    - name: cmd2
+      alias: 无回显命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: getmsg3
+      alias: 检测漏洞3
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - URLDNS
+                - FindClassByDNS
+            required: true

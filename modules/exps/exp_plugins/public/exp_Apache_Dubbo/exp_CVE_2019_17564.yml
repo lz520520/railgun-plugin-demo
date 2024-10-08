@@ -1,0 +1,78 @@
+info:
+    app: Dubbo
+    name: CVE-2019-17564
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2019-10-14"
+    create_date: "2024-10-07 02:10:25"
+    update_date: "2024-10-07 02:10:25"
+    scope: |-
+        2.7.0 <= Apache Dubbo <= 2.7.4
+        2.6.0 <= Apache Dubbo <= 2.6.7
+        Apache Dubbo = 2.5.x
+    description: Aapche Dubbo 反序列化命令执行漏洞
+    vul_id: CVE-2019-17564
+    reference: https://github.com/vulhub/vulhub/blob/master/dubbo/CVE-2019-17564/README.zh-cn.md
+payloads:
+    - name: check
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - FindClassByDNS
+            required: true
+          - key: RPC
+            title: RPC借口
+            param_type: edit
+            default_value: org.vulhub.api.CalcService
+            required: true
+    - name: cmd
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1SpringEncodeEcho
+                - CommonsBeanutilsNoCC2SpringEncodeEcho
+                - CommonsBeanutilsNoCC1TomcatEncodeEcho
+                - CommonsBeanutilsNoCC2TomcatEncodeEcho
+                - CommonsCollectionsK1TomcatEncodeEcho
+                - CommonsCollectionsK2TomcatEncodeEcho
+                - CommonsCollectionsK1SpringEchoEcho
+                - CommonsCollectionsK2SpringEchoEcho
+            required: true
+          - key: RPC
+            title: RPC借口
+            param_type: edit
+            default_value: org.vulhub.api.CalcService
+            required: true
+    - name: sleep
+      alias: sleep检测
+      params:
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - CommonsCollectionsK1Sleep
+                - CommonsCollectionsK2Sleep
+            required: true
+          - key: RPC
+            title: RPC借口
+            param_type: edit
+            default_value: org.vulhub.api.CalcService
+            required: true

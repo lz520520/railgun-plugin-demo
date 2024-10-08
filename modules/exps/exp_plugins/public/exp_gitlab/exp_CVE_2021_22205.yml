@@ -1,0 +1,121 @@
+info:
+    app: gitlab
+    name: CVE_2021_22205
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: ""
+    create_date: "2024-10-06 07:31:27"
+    update_date: "2024-10-06 07:31:27"
+    scope: "11.9 <=  GitLab（CE/EE）< 13.8.8 \n13.9 <=  GitLab（CE/EE）< 13.9.6 \n13.10 <= GitLab（CE/EE）< 13.10.3"
+    description: exiftool 远程命令执行漏洞，攻击者通过上传恶意图片可触发远程命令执行，控制服务器。
+    vul_id: CVE-2021-22205
+    detail: |-
+        payload1:
+        	输入命令执行即可，无回显，建议使用curl来测试，ping存在问题
+        	反弹shell、上传小文件
+        payload2:
+        	添加用户
+        payload3 with CSRF:
+        	输入命令执行即可，无回显，建议使用curl来测试，ping存在问题
+        	反弹shell、上传小文件
+        payload4 with CSRF:
+        	添加用户
+
+        利用过程
+        1. 访问 /users/sign_in  获取到 experimentation_subject_id、_gitlab_session 、X-CSRF-Token
+        2. 提交恶意文件到/uploads/user，返回Failed to process image表示利用成功
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: reverse1
+      alias: 反弹shell
+      params:
+          - key: ip
+            title: IP
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: port
+            title: 端口
+            param_type: edit
+            default_value: ""
+            required: true
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: content
+            required: true
+    - name: adduser1
+      alias: 添加用户
+      params:
+          - key: username
+            title: 用户名
+            param_type: edit
+            default_value: test_user
+            required: true
+          - key: password
+            title: 密码
+            param_type: edit
+            default_value: Test@9527
+            required: true
+    - name: cmd2
+      alias: 命令执行(CSRF)
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: reverse2
+      alias: 反弹shell(CSRF)
+      params:
+          - key: ip
+            title: IP
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: port
+            title: 端口
+            param_type: edit
+            default_value: ""
+            required: true
+    - name: upload2
+      alias: 文件上传(CSRF)
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: content
+            required: true
+    - name: adduser2
+      alias: 添加用户(CSRF)
+      params:
+          - key: username
+            title: 用户名
+            param_type: edit
+            default_value: test_user
+            required: true
+          - key: password
+            title: 密码
+            param_type: edit
+            default_value: Test@9527
+            required: true

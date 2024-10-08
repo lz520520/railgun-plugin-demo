@@ -1,0 +1,34 @@
+info:
+    app: 致远OA
+    name: ReportServer
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-08-17"
+    create_date: "2024-10-06 08:41:56"
+    update_date: "2024-10-06 08:41:56"
+    scope: |-
+        致远A6-V5 V6.1
+        致远A6-V5 V6.1SP1
+        致远A8-V5 V6.1SP1
+        致远A8-V5 V6.1SP2
+    description: 任意文件上传
+    detail: |-
+        /seeyonreport/ReportServer
+
+        1. 文件名不要有路径。
+        2. 填入cookie，因为是后台的洞
+        3. 返回提供url
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true

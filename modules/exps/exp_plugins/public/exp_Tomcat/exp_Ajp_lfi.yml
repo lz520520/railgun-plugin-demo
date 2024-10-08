@@ -1,0 +1,33 @@
+info:
+    app: Tomcat
+    name: Ajp_lfi
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-02-20"
+    create_date: "2024-10-06 09:01:57"
+    update_date: "2024-10-06 09:01:57"
+    scope: |-
+        Apache Software Foundation Tomcat 6.*
+        Apache Software Foundation Tomcat 7.0.0 - 7.0.99
+        Apache Software Foundation Tomcat 8.0.0 - 8.5.50
+        Apache Software Foundation Tomcat 9.0.0 - 9.0.30
+    description: Apache Tomcat 使用AJP协议通信过程中存在文件包含漏洞，由于AJP协议设计存在缺陷内部相关的属性可控，攻击者可以构造属性值，实现漏洞的利用，成功利用这些漏洞可导致获得敏感文件信息，甚至可以进行远程代码执行漏洞利用。
+    vul_id: CVE-2020-1938
+    detail: |
+        使用前需上传一个jsp内容的文件，后缀可以任意，如4.png
+        URL输入如ajp://1.1.1.1:8009/abcd.jsp或1.1.1.1:8009/abcd.jsp
+        URI资源可任意写，后缀为jsp才会使用JspServlet解析，否则使用DefaultServlet只有文件读取功能
+        然后cmd输入上传文件基于根目录的相对路径即可包含执行。
+        需要注意的是只能上传至web根路径以及子目录下，无法跨出web根目录，根目录如webapps。
+    payload: |
+        下面只是用于大致展示，不是实际格式，由于传输为二进制，部分字符串无法正常显示的。
+        "HTTP/1.1" "/1.jsp" 127.0.0.1 localhost porto 8009 false "Cookie:AAAA=BBBB" "javax.servlet.include.request_uri:/","javax.servlet.include.path_info:1.txt","javax.servlet.include.servlet_path:/upload/"
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: WEB-INF/web.xml
+            required: true

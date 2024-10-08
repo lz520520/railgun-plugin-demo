@@ -1,0 +1,29 @@
+info:
+    app: wso2
+    name: cve_2022_29464_upload
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-04-25"
+    create_date: "2024-10-06 09:34:38"
+    update_date: "2024-10-06 09:34:38"
+    scope: |-
+        WSO2 API Manager 2.2.0 及更高版本到 4.0.0
+        WSO2 Identity Server 5.2.0 及以上至 5.11.0
+        WSO2 身份服务器分析 5.4.0、5.4.1、5.5.0 和 5.6.0
+        WSO2 身份服务器作为密钥管理器 5.3.0 及更高版本至 5.10.0
+        WSO2 Enterprise Integrator 6.2.0 及更高版本至 6.6.0
+    description: WSO2 产品允许无限制的文件上传和远程代码执行。攻击者必须使用带有 Content-Disposition 目录遍历序列的 /fileupload 端点来到达 Web 根目录下的目录，例如 ../../../../repository/deployment/server/webapps 目录。
+    vul_id: CVE-2022-29464
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""

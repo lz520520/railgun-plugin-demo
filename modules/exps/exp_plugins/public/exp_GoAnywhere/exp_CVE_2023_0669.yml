@@ -1,0 +1,61 @@
+info:
+    app: GoAnywhere
+    name: CVE_2023_0669
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2023-02-14"
+    create_date: "2024-10-08 10:59:59"
+    update_date: "2024-10-08 10:59:59"
+    scope: 7.1.2以下
+    description: 反序列化
+    vul_id: CVE-2023-0669
+    reference: https://github.com/0xf4n9x/CVE-2023-0669/
+    vul_type: 命令执行
+payloads:
+    - name: check
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: DNSLOG
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - FindClassByDNS
+            required: true
+    - name: echocmd
+      alias: 回显命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1TomcatEncodeEcho
+                - CommonsBeanutilsNoCC2TomcatEncodeEcho
+                - CommonsBeanutilsNoCC1SpringEncodeEcho
+                - CommonsBeanutilsNoCC2SpringEncodeEcho
+                - CommonsCollectionsK1TomcatEncodeEcho
+                - CommonsCollectionsK2TomcatEncodeEcho
+                - CommonsCollectionsK1SpringEchoEcho
+                - CommonsCollectionsK2SpringEchoEcho
+            required: true
+    - name: sleep
+      alias: sleep检测
+      params:
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - CommonsCollectionsK1Sleep
+                - CommonsCollectionsK2Sleep
+            required: true

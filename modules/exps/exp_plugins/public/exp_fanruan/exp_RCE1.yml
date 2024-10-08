@@ -1,0 +1,29 @@
+info:
+    app: fanruan
+    name: RCE1
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2020-08-17"
+    create_date: "2024-10-06 07:17:21"
+    update_date: "2024-10-06 07:17:21"
+    description: 通过权限绕过，访问报表查询界面，获取到sessionid，发送查询，查询中TYPE/TIME参数存在注入，并能执行java代码，从而成功利用
+    detail: |-
+        输入URL不要带路径，跟应用的目录URI就行了。
+
+        利用是全自动化了，利用过程大致是，访问页面获取sessionid，携带sessionid发送查询，查询后，一定要刷新，才能成功执行代码。
+        应该无回显，推荐写文件回显如 cmd /c whoami > ../webroot/yyexam/2.txt
+        默认路径是在tomcat下
+
+        获取信息：获取环境变量，web路径
+        命令执行：无回显
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: getmsg1
+      alias: 获取信息

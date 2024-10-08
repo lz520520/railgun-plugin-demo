@@ -1,0 +1,32 @@
+info:
+    app: apisix
+    name: CVE_2021_45232
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2021-12-18"
+    create_date: "2024-10-06 06:29:53"
+    update_date: "2024-10-06 06:29:53"
+    scope: 2.7≤ Apache APISIX  Dashboard <2.10.1
+    description: 导入导出配置接口存在未授权，可以添加恶意路由到apisix服务上，从而RCE
+    vul_id: CVE-2021-45232
+    detail: |-
+        /apisix/admin/migrate/import
+        /apisix/admin/migrate/export
+
+        payload1：
+        	1. 点击获取信息,会添加恶意路由，返回一个apisix URL，因为和dasboard接口不同
+        	2. 修改URL，输入命令即可执行命令
+        payload2:
+        	获取信息：利用后用于清除恶意脚本。
+payloads:
+    - name: getmsg1
+      alias: 检测漏洞
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+    - name: getmsg2
+      alias: 清除痕迹

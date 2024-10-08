@@ -1,0 +1,17 @@
+info:
+    app: sonicWall_SSLVPN
+    name: RCE
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-01-24"
+    create_date: "2024-10-06 08:46:18"
+    update_date: "2024-10-06 08:46:18"
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

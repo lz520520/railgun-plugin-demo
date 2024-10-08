@@ -1,0 +1,20 @@
+info:
+    app: Apache_Solr
+    name: CVE-2019-0193
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2018-11-14"
+    create_date: "2024-10-08 10:29:52"
+    update_date: "2024-10-08 10:29:52"
+    scope: Apache Solr 是一个开源的搜索服务器。Solr 使用 Java 语言开发，主要基于 HTTP 和 Apache Lucene 实现。此次漏洞出现在Apache Solr的DataImportHandler，该模块是一个可选但常用的模块，用于从数据库和其他源中提取数据。它具有一个功能，其中所有的DIH配置都可以通过外部请求的dataConfig参数来设置。由于DIH配置可以包含脚本，因此攻击者可以通过构造危险的请求，从而造成远程命令执行。
+    reference: http://wjlshare.com/archives/1617
+    vul_type: 代码执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

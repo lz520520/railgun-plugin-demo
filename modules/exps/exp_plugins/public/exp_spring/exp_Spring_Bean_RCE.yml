@@ -1,0 +1,39 @@
+info:
+    app: spring
+    name: Spring_Bean_RCE
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-03-31"
+    create_date: "2024-10-06 08:57:17"
+    update_date: "2024-10-06 08:57:17"
+    scope: |-
+        Spring MVC
+        JDK>=9
+    description: Spring MVC Beans RCE
+    detail: |-
+        文件上传：
+        	文件名有两种，不带路径test.jsp，则写入/ROOT/；带路径，如/app/test.jsp，写入路径参考URI路径
+payloads:
+    - name: upload1
+      alias: 命令执行
+      params:
+          - key: min
+            title: Header最小值
+            param_type: edit
+            default_value: "40"
+            required: true
+          - key: max
+            title: Header最大值
+            param_type: edit
+            default_value: "70"
+            required: true
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true

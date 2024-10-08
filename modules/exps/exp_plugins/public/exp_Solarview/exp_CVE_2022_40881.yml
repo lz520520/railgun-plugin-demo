@@ -1,0 +1,23 @@
+info:
+    app: Solarview
+    name: CVE_2022_40881
+    author: Henry4E36
+    plugin_version: 1.0.0
+    disclosure_date: "2022-11-22"
+    create_date: "2024-10-06 08:45:00"
+    update_date: "2024-10-06 08:45:00"
+    scope: SolarView Compact 6.0
+    description: SolarView Compact6.0版本中通过network_test.php实现命令注入
+    vul_id: CVE_2022_40881
+    detail: 常规命令，若命令中存在空格，可使用${IFS}进行替换空格
+    reference: http://wiki.cisp-pte.com/#/wiki
+    vul_type: 命令执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

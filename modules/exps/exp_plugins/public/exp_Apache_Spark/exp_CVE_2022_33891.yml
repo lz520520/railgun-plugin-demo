@@ -1,0 +1,22 @@
+info:
+    app: ' Apache_Spark'
+    name: CVE_2022_33891
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2022-07-18"
+    create_date: "2024-10-06 06:18:37"
+    update_date: "2024-10-06 06:18:37"
+    scope: |-
+        Apache Spark versions 3.0.3 and earlier
+        versions 3.1.1 to 3.1.2
+        versions 3.2.0 to 3.2.1
+    vul_id: CVE-2022-33891
+    vul_type: 命令执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami

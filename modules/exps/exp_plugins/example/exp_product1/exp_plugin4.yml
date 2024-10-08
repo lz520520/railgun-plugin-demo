@@ -1,0 +1,57 @@
+info:
+    app: test
+    name: 反序列化2
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2006-01-02"
+    create_date: "2006-01-02"
+    update_date: "2006-01-02"
+    scope: ""
+    description: ""
+    detail: |
+        test
+    payload: ""
+    repository: ""
+    reference: ""
+payloads:
+    - name: 1
+      alias: 检测漏洞
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            tips: whoami
+            default_value: whoami
+            required: true
+          - key: key
+            title: 密钥
+            param_type: textarea
+            tips: whoami
+            default_value: whoami
+            required: true
+          - key: checkbox
+            title: 确认项
+            param_type: checkbox
+            tips: whoami
+            default_value: false
+            required: false
+          - key: combobox
+            title: 多选项
+            param_type: combobox
+            tips: whoami
+            default_value:
+                - 1
+                - 2
+            required: false
+          - key: file
+            title: 上传
+            param_type: file
+            tips: whoami
+            default_value:
+            required: false
+          - key: code
+            title: 上传
+            param_type: code
+            tips: whoami
+            default_value: '[+] 111'
+            required: false

